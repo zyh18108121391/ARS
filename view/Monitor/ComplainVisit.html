@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>去电回访</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/main.css">
+
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="js/ComplainVisit.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			caption {
+				text-align: center;
+				font-size: 30px;
+				font-weight: 500;
+				color: #333333;
+			}
+			.com-select{
+				padding: 5px 5px;
+			}
+			.hiden-doc{
+				background-color: #eee;
+			}
+			.hiden-doc:hover{
+				cursor:not-allowed;
+			}
+		</style>
+	</head>
+
+	<body>
+		<section id="NewEvent" class="NewComplain" style="display: block;">
+			<h1 class="header" style="margin-top: 20px;">去电回访</h1>
+			<table id="tale-have" class="table table-striped table-newWork" style="margin-bottom: 10px;">
+				<tr>
+					<th class="tit">会员:</td>
+						<td>
+                   			<span id="MemberName" style="color: #9a9a9a"></span>
+                    		<!--<span class="selectMember" onclick="selectMember()">点击选择会员</span>-->
+                		</td>
+						<th>联系电话</th>
+						<td id="tellNo"></td>
+				</tr>
+				<tr>
+					<th>会员级别</th>
+					<td id="M_level" style="color: #9a9a9a">
+						
+					</td>
+					<th>投诉类型</th>
+					<td id="ComplainType">
+					</td>
+				</tr>
+				<tr>
+					<th>投诉级别</th>
+					<td id="ComplainLevel">
+					</td>
+					<th>投诉对象类型</th>
+					<td id="ObjectType" >
+					</td>
+				</tr>
+				<tr>
+					<th>投诉对象</th>
+					<td id="ComplainObject">
+					</td>
+					<th class="">转接部门</th>
+					<td id="TransferDepartment">
+					</td>
+				</tr>
+				<tr>
+					<th >投诉内容</th>
+					<td id="Contents" style="max-width: 500px;">
+					</td>
+					<th >部门处理结果</th>
+					<td style="max-width: 500px;">
+						<textarea id="ResultByDepartment" name="" rows="5" cols=""  placeholder="部门处理结果" style="width: 300px;"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th >客服处理结果</th>
+					<td>
+						<textarea id="ResultByService" name="" rows="5" cols=""  placeholder="客服处理结果" style="width: 300px;"></textarea>
+					</td>
+					<th >客服回访结果</th>
+					<td>
+						<textarea id="CallbackResult" name="" rows="5" cols=""  placeholder="客服回访结果" style="width: 300px;"></textarea>
+					</td>
+				</tr>
+				<tr style="height: 0px;">
+					<th colspan="1" style="height: 0px;padding: 0px;" </th>
+						<td colspan="3" style="height: 0px;padding: 0px;"></td>
+				</tr>
+			</table>
+			<div style="text-align: center;">
+				<input style="margin-right: 5px;" class="btn btn-primary" type="button" name="" id="" value="回访" onclick="visit()" />
+				<input style="margin-right: 5px;" class="btn btn-danger" type="button" name="" id="" value="返回" onclick="back()" />
+			</div>
+		</section>
+	</body>
+
+</html>

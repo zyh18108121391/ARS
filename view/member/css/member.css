@@ -1,0 +1,420 @@
+#allDetailDiv table tbody td {
+    vertical-align: middle;
+}
+
+.printCode p {
+    margin: 0;
+    padding: 0;
+}
+
+.printCode p span {
+    margin: 0;
+    padding: 0;
+}
+
+.edit_div {
+    z-index: 10000;
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -150px;
+    width: 500px;
+    height: 160px;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 13px;
+}
+
+.edit_div_disease {
+    z-index: 10000;
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -200px;
+    width: 500px;
+    overflow-x: hidden;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 13px;
+}
+
+.my-table {
+    margin-bottom: 0px !important;
+}
+
+.my-table-div {
+    max-height: 450px;
+    overflow-y: scroll;
+    padding: 5px;
+    border-bottom: 1px #ddd solid;
+}
+
+.lable-l {
+    font-size: 16px;
+    position: absolute;
+    left: 10px;
+    line-height: 35px;
+}
+
+.span-r {
+    padding: 0px 5px;
+    font-size: 16px;
+    position: absolute;
+    left: 100px;
+    right: 0;
+    width: 380px;
+    height: 35px;
+    line-height: 35px;
+}
+
+.edit-div-li {
+    height: 40px;
+    padding: 5px 5px;
+}
+
+.wiki-title {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #1D7DB1;
+    line-height: 25px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+}
+
+.ask-title {
+    background-color: #d9534f;
+}
+
+.close-btn {
+    position: absolute;
+    right: 2px;
+    top: 4px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 0px;
+    background-repeat: no-repeat;
+    background-image: url(../../../images/iconfont-close.png);
+}
+
+.jy {
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: #b3b3b3;
+    display: none;
+    position: absolute;
+}
+
+.content img {
+    width: 100%;
+    height: 496px;
+}
+
+.typeName {
+    text-align: center;
+    line-height: 25px;
+}
+
+.my_close {
+    position: absolute;
+    cursor: pointer;
+    color: #0C89FF;
+    right: 2px;
+    top: 2px;
+}
+
+.my_close a {
+    display: block;
+}
+
+.relative {
+    position: relative;
+}
+
+.selectMember {
+    border-radius: 4px;
+    background-color: #0C89FF;
+    padding: 5px 9px;
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+}
+
+.d-ul ul,
+.d-ul li {
+    list-style-type: none;
+    padding: 10px;;
+}
+
+.d-ul li img {
+    width: 100%;
+    height: 200px;
+}
+
+.d-text {
+    line-break: 20;
+    text-align: center;
+}
+
+.msg-input {
+    width: 100%;
+    border-radius: 3px;
+    padding: 5px;
+    border: 1px solid #CCC;
+}
+
+.msg-textarea {
+    width: 100%;
+    height: 100px;
+    border-radius: 3px;
+    padding: 5px;
+    border: 1px solid #CCC;
+}
+
+.statu {
+    padding: 0px 5px;
+    background: #A59AA9;
+    min-width: 50px;
+    display: inline-block;
+    line-height: 25px;
+    text-align: center;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.search-select select {
+    width: 120px;
+    padding: 0px 4px;
+}
+
+.my_td {
+    width: 250px;
+}
+
+.my-td-01 {
+    width: 450px;
+}
+
+.back-position {
+    position: absolute;
+    left: 10px;
+}
+
+.detail-thead {
+    padding: 5px;
+    text-align: center;
+}
+
+.detail-thead span {
+    line-height: 25px;
+    padding: 8px;
+    color: #fff;
+    background-color: #999;
+}
+
+.editBtn {
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    line-height: 25px;
+    font-size: 20px;
+    display: block;
+    width: 50px;
+    height: 25px;
+}
+
+.td-editBtn {
+    float: right;
+    display: none;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-image: url(../../../images/data-edit-btn.png);
+}
+
+.editFlag a {
+    cursor: pointer;
+}
+
+.td-edit {
+    display: none;
+    float: right;
+    width: 50px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.MedicalBtn {
+    position: absolute;
+    right: 200px;
+}
+
+.d-list-a:hover .a-span {
+    display: block;
+}
+
+.a-span {
+    transition: all 2s;
+    display: none;
+    color: #777;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.9;
+    height: 40px;
+    background-color: #eee;
+    line-height: 40px;
+}
+
+.showEditA {
+    position: absolute;
+    float: left;
+    width: 35px;
+    height: 35px;
+    left: 120px;
+    top: 2px;
+    bottom: 0;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-image: url("../imgages/edit-icon-1.png");
+}
+
+.edit-active {
+    background-image: url("../imgages/edit-icon-2.png");
+}
+
+.p-add-div {
+    width: 245px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto
+}
+.phone_list_input{
+    width: 245px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto
+}
+.p-list {
+    height: auto;
+    text-align: center
+}
+.handle{
+    cursor: move;
+}
+/**疾病搜索***/
+.my-input {
+    margin-top: 5px;
+    padding: 5px;
+    height: 35px;
+    border: 1px solid #CCCCCC;
+    width: 100% !important;
+}
+
+.search_results {
+    max-height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    background-color: #ffffff;
+    z-index: 1000;
+    border: 1px solid #E4E6E7;
+    display: none;
+}
+
+.search_results ul {
+    list-style: none;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+.search_results li {
+    text-align: start;
+    line-height: 30px;
+    color: #1020FA;
+    border-bottom: 1px #F5F5F5 solid;
+    padding: 5px;
+    margin: 0 auto;
+}
+
+.search_results li img {
+    padding: 0;
+    margin-right: 3px;
+    height: 30px;
+    width: 30px;
+}
+
+.search_results li:hover {
+    background-color: #337ab7;
+    cursor: pointer;
+    color: #fff
+}
+
+.search_results li:hover small {
+    color: #fff
+}
+
+.search_results li small {
+    padding-left: 5px;
+    color: #999;
+}
+
+.disease-ul {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    list-style: none;
+    padding: 0;
+}
+
+.disease-ul li {
+    background-color: #aaa;
+    color: #fff;
+    font-size: 12px !important;
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+}
+
+.disease-ul li:hover {
+    background-color: #004CFF;
+    color: #fff
+}
+
+.margintop10 {
+    margin-top: 10px;
+}
+.marginB10{
+    margin: 10px;
+}
+
+.disease-search {
+    width: 100%;
+    display: none;
+}
+.no-disease{
+    cursor: default !important;
+    background-color: #fff !important;
+    color: #aaa !important;
+}
+.no-disease:hover {
+    cursor: default !important;
+    background-color: #fff !important;
+    color: #aaa !important;
+}
+.no-disease a{
+    font-size: 12px !important;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ARS后台管理系统 </title>
+    <meta charset="utf-8"/>
+    <link href="css/index.css" rel="styleSheet" type="text/css">
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/data/index.js"></script>
+    <script src="js/av-mini-0.6.1.js"></script>
+	<script src="js/leancloud.js"></script>
+	<script src="js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div class="top">
+    <div class="tit"><span class="tit_name">ARS后台管理系统</span><span class="time_display">时间</span></div>
+    <div id="ad_setting" class="ad_setting">用户名<a href="javascript:; " class="ad_setting_a"></a>
+        <ul id="ad_setting_ul" style="display: none" class="dropdown-menu-uu">
+            <li  class="ad_setting_ul_li"><a  href="javascript:iframeTarget('a.html');">修改密码</a></li>
+            <li  class="ad_setting_ul_li"><a href="login.html">登录页面</a></li>
+        </ul>
+        <img src="images/right_menu.png" class="use_xl">
+    </div>
+</div>
+<div class="left-menu">
+    <ul class="menu" id="menu">
+        <li class="menu-list"><a class="btn_1">会员管理<i class="arrow"></i></a>
+            <ul class="menu_1">
+                <li><a href="view/member/member_list.html" target="menuFrame">会员管理</a></li>
+            </ul>
+        </li>
+        <li class="menu-list"><a class="btn_2">日程管理<i class="arrow"></i></a>
+			 <ul class="menu_2">
+                <li><a href="view/scheduleControl/schedules.html" target="menuFrame" class="btn_0">日程列表</a></li>
+                <li><a href="view/member/member_NewEvent.html" target="menuFrame">新建预约</a></li>
+                <!--<li><a href="view/scheduleControl/surePrebook.html" target="menuFrame">确认预约</a></li>
+                <li><a href="view/scheduleControl/filloutDiagnosis.html" target="menuFrame">填写诊断结果</a></li>
+            	<li><a href="view/scheduleControl/scheduleComment.html" target="menuFrame">日程评价</a></li>-->
+			 </ul> 
+        <li class="menu-list"><a class="btn_3">咨询管理<i class="arrow"></i></a>
+            <ul class="menu_3">
+                <li><a href="view/advisoryManage/waitingAnswerAdvisory.html" target="menuFrame">待回答咨询</a></li>
+                <li><a href="view/advisoryManage/historyAdvisory.html" target="menuFrame">历史咨询</a></li>
+            </ul> 
+        </li>
+        <li class="menu-list"><a class="btn_4">我的ARS<i class="arrow"></i></a>
+            <ul class="menu_4">
+                <li><a href="view/MyArs/commentManage.html" target="menuFrame">我收到的评分</a></li>
+                <li><a href="view/MyArs/myIncome.html" target="menuFrame">我收到的收入</a></li>
+                <li><a href="view/MyArs/editBasicInformation.html" target="menuFrame">基本资料</a></li>
+            </ul>
+        </li>
+        <li class="menu-list"><a href="" target="menuFrame" class="btn_0">CRM</a>
+        </li>
+    </ul>
+</div>
+<div id="right-content" class="right-content">
+    <div class="content">
+        <div id="page_content">
+            <iframe id="menuFrame" name="menuFrame" src="view/member/member_list.html" style="overflow:visible;" scrolling="yes" frameborder="no" width="100%" height="95%"></iframe>
+        </div>
+    </div>
+</div>
+<script src="js/index.js" type="text/javascript"></script>
+</body>
+</html>

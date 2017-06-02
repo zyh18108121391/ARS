@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>咨询管理</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/main.css">
+
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+
+		<script src="../../js/AV.push.js"></script>
+		<script src="../member/js/CToPY.js"></script>
+		<script src="js/CounselList.js"></script>
+		<script src="js/main.js"></script>
+		<script src="../../js/MyPushAndCallPublic.js"></script>
+		<style type="text/css">
+			.addQueBtn1 {
+				 position: absolute;
+				 left: 0px;
+
+				 border-radius: 0px;
+				 bottom: -1px;
+				 color: #aaa;
+			 }
+			.addQueBtn2 {
+				position: absolute;
+
+				border-left: 0px;
+				left: 82px;
+				border-radius: 0px;
+				bottom: -1px;
+				color: #aaa;
+			}
+			.addQueBtn3 {
+				position: absolute;
+
+				border-left: 0px;
+				left: 162px;
+				border-radius: 0px;
+				bottom: -1px;
+				color: #aaa;
+			}
+			.addQueBtn1:hover, .addQueBtn2:hover,.addQueBtn3:hover {
+				color: #0C89FF;
+			}
+
+			.check-active {
+				color: #333 !important;
+				border: 1px #ddd solid;
+				border-bottom-color: #fff;
+			}
+
+			.check-active:hover {
+				cursor: default;
+				color: #aaa;
+			}
+			
+			table img {
+				width: 40px;
+				height: 30px;
+			}
+			
+			.check-h1 {
+				border-bottom: 1px #ddd solid;
+			}
+			
+			.list-btn {
+				width: 80px;
+				margin-left: 5px;
+				padding: 2px 5px;
+			}
+			
+			#table-body a {
+				line-height: 25px;
+			}
+			.search-div-position {
+				height: 30px;
+				font-size: 25px;
+				width: 500px;
+				position: absolute;
+				left: 200px;
+				bottom: -5px;
+			}
+			
+			.counsel_search_input {
+				position: absolute;
+				top: -8px;
+				left: 300px;
+				line-height: 30px;
+				width: 100px;
+			}
+			
+			.counsel_search_input input {
+				line-height: 30px;
+				width: 150px;
+			}
+			
+			.search-b {
+				position: absolute;
+				left: 455px;
+				top: -8px;
+			}
+			.td-time {
+				width:160px;
+			}
+			.td-content {
+				white-space: nowrap;
+				max-width: 160px;
+				max-height: 30px;
+				overflow: hidden;
+				text-overflow:ellipsis;
+			}
+			.c-img{
+				display: inline-block;
+				width: 25px;
+				background-size: 25px;
+				height: 25px;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-image: url("../../images/pic-icon.png");
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1 style="text-align: center;">咨询管理</h1>
+		<div class="relative check-h1" style="height: 30px;">
+			<span class="addQueBtn1 btn check-active" data="mine" onclick="CounselList('mine')">我的咨询</span>
+			<span class="addQueBtn2 btn active2" data="all" onclick="CounselList('all')">所有咨询</span>
+			<span class="addQueBtn3 btn active3" data="wati" onclick="CounselList('wait')">待回复</span>
+			<div class="counsel_search_input">
+				<input type="text" id="memberName" placeholder="会员名称" list="memberList">
+				<datalist id="memberList"></datalist>
+				<ul class="member_list_by_py"></ul>
+			</div>
+			<input id="searchBtn" type="button" class="btn btn-primary search-b" onclick="searchFunc()" value="查询" />
+		</div>
+		<div  style="width: 100%;overflow-x: scroll;">
+		<table class="table table-hover table-striped" style="min-width: 1200px;">
+			<thead>
+				<tr>
+					<th class="things">会员</th>
+					<th class="things">对象</th>
+					<th class="things">负责客服</th>
+					<th class="things">事项</th>
+					<th>咨询内容</th>
+					<th>最新补充内容</th>
+					<th class="answer_time">回答时效/H</th>
+					<th>咨询建立时间</th>
+					<th>最新回复时间</th>
+					<th class="handle">操作</th>
+				</tr>
+			</thead>
+			<tbody id="table-body">
+				<!--<td><a href="#">详情</a><span class="btn btn-primary list-btn" date-type="call" name="tel" onclick="call(this)">拨打电话</span></td>-->
+			</tbody>
+
+		</table>
+		</div>
+		<div class="page-div">
+			<div class="page float-rt">
+				<table class="page-table" border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+						</td>
+						<td>第<strong id="now"><!--1--></strong>页</td>
+						<td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

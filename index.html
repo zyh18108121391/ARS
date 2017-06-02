@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ARS后台管理系统 </title>
+    <meta charset="utf-8"/>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/csshake.css" rel="stylesheet" type="text/css">
+
+    <link href="css/index.css" rel="styleSheet" type="text/css">
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/av-mini-0.6.1.js"></script>
+    <script src="js/leancloud.js"></script>
+    <script src="js/layer/layer.js"></script>
+    <script src="js/laydate/laydate.js"></script>
+
+    <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+    <!--push model-->
+    <script src="js/AV.push.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/MyPushAndCallPublic.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/index.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="windows_data" data="1" class="top relative">
+    <div class="tit"><span class="tit_name">ARS客服后台管理系统</span><span class="time_display">时间</span></div>
+    <div id="ad_setting" class="ad_setting">
+        <span id="username"></span>
+        <a href="javascript:; " class="ad_setting_a"></a>
+        <ul id="ad_setting_ul" style="display: none" class="dropdown-menu-uu">
+            <!--<li  class="ad_setting_ul_li"><a  href="javascript:iframeTarget('a.html');">修改密码</a></li>-->
+            <a href="javascript:logout();">
+                <li class="ad_setting_ul_li">退出</li>
+            </a>
+        </ul>
+        <img src="images/rightmenu.png" class="use_xl">
+    </div>
+    <div id="statu-div" class="statu-div relative" title="切换工作状态" data="" onclick="changeStatu(this)">
+        <span id="statu-icon" class="statu-icon "></span>
+        <span id="statu-text" class="statu-text"></span>
+    </div>
+    <div class="net-div">
+        <div class="float-lt net-icon net-good-icon"></div>
+        <div class="float-lt net-work">网络正常</div>
+    </div>
+</div>
+<div class="left-menu">
+    <ul class="menu" id="menu">
+        <li class="menu-list">
+            <a class="btn">来电&外呼<i class="arrow"></i></a>
+            <ul>
+                <li>
+                    <a href="view/call/CallIndex.html" target="menuFrame">来电</a>
+                </li>
+                <li>
+                    <a href="view/callOut/callOutMenu.html" target="menuFrame">外呼</a>
+                </li>
+                <!--<li>
+                    <a href="view/call/callTest.html" target="menuFrame">去电测试</a>
+                </li>-->
+            </ul>
+        </li>
+        <li class="menu-list">
+            <a class="btn">会员管理<i class="arrow"></i></a>
+            <ul>
+                <li>
+                    <a href="view/member/memberlist.html" target="menuFrame">会员列表</a>
+                </li>
+                <li>
+                    <a href="view/member/followMemberlist.html" target="menuFrame">关注者列表</a>
+                </li>
+                <li>
+                    <a href="view/member/myFollowlist.html" target="menuFrame">我跟进的关注者</a>
+                </li>
+                <li>
+                    <a href="view/member/countFollowMemberlist.html" target="menuFrame">关注者统计</a>
+                </li>
+                <li>
+                    <a href="view/member/Search.html" target="menuFrame">会员搜索</a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-list">
+            <a class="btn">档案管理<i class="arrow"></i></a>
+            <ul>
+                <li>
+                    <a href="view/Report/report.html" target="menuFrame">档案管理</a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-list">
+            <a class="btn">投诉工单管理<i class="arrow"></i></a>
+            <ul>
+                <li>
+                    <a href="view/complainWorkOrder/newComplain.html" target="menuFrame">新建工单</a>
+                </li>
+                <li>
+                    <a href="view/complainWorkOrder/waitingChange.html" target="menuFrame">待转接工单</a>
+                </li>
+                <li>
+                    <a href="view/complainWorkOrder/waitingDealWith.html" target="menuFrame">待处理工单</a>
+                </li>
+                <li>
+                    <a href="view/complainWorkOrder/waitingVisit.html" target="menuFrame">待回访工单</a>
+                </li>
+                <li>
+                    <a href="view/complainWorkOrder/history.html" target="menuFrame">所有历史工单</a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-list">
+            <a class="btn">销售工单管理<i class="arrow"></i></a>
+            <ul>
+                <li>
+                    <a href="view/workOrder/newOrder.html" target="menuFrame">新建工单</a>
+                </li>
+                <li>
+                    <a href="view/workOrder/waitingDealWith.html" target="menuFrame">待处理工单</a>
+                </li>
+                <li>
+                    <a href="view/workOrder/history.html" target="menuFrame">所有历史工单</a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-list">
+            <a class="btn">坐席通话记录管理<i class="arrow"></i></a>
+            <ul>
+                <li>
+                    <a href="view/AgentRecord/historyRecord.html" target="menuFrame">所有通话记录</a>
+                </li>
+                <li>
+                    <a id="chatRoomUrl" href="" target="menuFrame">坐席聊天室</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="menu-list">
+            <a class="btn">咨询管理<i class="arrow"></i></a>
+            <ul>
+                <li>
+                    <a href="view/Counsel/CounselList.html" target="menuFrame">咨询管理</a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-list">
+            <a class="btn">知识库<i class="arrow"></i></a>
+            <ul>
+                <li>
+                    <a href="http://wiki.arshmc.cn:3000/" target="menuFrame">知识库</a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-list">
+            <a class="btn">我的ARS<i class="arrow"></i></a>
+            <ul>
+                <li>
+                    <a href="view/MyArs/MyArs.html" target="menuFrame">我的信息</a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-list">
+            <a class="btn">在线客服<i class="arrow"></i></a>
+            <ul>
+                <li>
+                    <a id="onlineAgent" target="menuFrame">在线客服</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="right-content" class="right-content">
+    <div class="content">
+        <div id="page_content">
+            <iframe id="menuFrame" name="menuFrame" src="view/call/CallIndex.html" style="overflow:visible;"
+                    scrolling="yes" frameborder="no" width="100%" height="95%"></iframe>
+        </div>
+    </div>
+</div>
+<div class="ScheduleReminder-float" onmouseenter="openSRFloat()" onmouseleave="closeSRFloat()">
+    <div class="sr-icon"></div>
+    <div class="rs-content-1 shake-constant" onclick="openNewWind(1)">待确认<span  id="sr-waitSure" class="sr-number">0</span></div>
+    <div class="rs-content-2 shake-constant" onclick="openNewWind(2)">待提醒<span id="sr-waitAler" class="sr-number bgcolor-red">0</span></div>
+    <div class="rs-content-3 shake-constant" onclick="openNewWind(3)">待回复<span id="sr-waitReplay" class="sr-number bgcolor-gay">0</span></div>
+</div>
+<div id="audioDiv" style="display: none"></div>
+</body>
+
+</html>

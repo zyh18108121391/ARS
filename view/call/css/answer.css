@@ -1,0 +1,219 @@
+	#allDetailDiv table tbody td {
+		vertical-align: middle;
+	}
+	
+	.printCode p {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.printCode p span {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.edit_div {
+		display: none;
+		border-radius: 4px;
+		z-index: 999px;
+		background-color: #fff;
+		width: 600px;
+		height: 525px;
+		border: 2px #428BCA solid;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin-top: -300px;
+		margin-left: -300px;
+	}
+	
+	.content img {
+		width: 100%;
+		height: 496px;
+	}
+	
+	.typeName {
+		text-align: center;
+		line-height: 25px;
+	}
+	
+	.my_close {
+		position: absolute;
+		cursor: pointer;
+		color: #0C89FF;
+		right: 2px;
+		top: 2px;
+	}
+	
+	.my_close a {
+		display: block;
+	}
+	
+	.relative {
+		position: relative;
+	}
+	
+	.selectMember {
+		border-radius: 2px;
+		background-color: #0C89FF;
+		display: block;
+		padding: 0px 5px;
+		color: #fff;
+		text-align: center;
+		cursor: pointer;
+		display: inline-block;
+		float: right;
+	}
+	
+	.d-ul ul,
+	.d-ul li {
+		list-style-type: none;
+		padding: 0 !important;
+	}
+	
+	.d-ul li {
+		border: 1px #fff solid;
+		margin: 10px;
+		float: left;
+	}
+	
+	.d-ul li img {
+		width: 200px;
+		height: 200px;
+	}
+	
+	.d-ul li:hover {
+		padding: 0px;
+		border: 1px rgba(0, 0, 0, .1) solid;
+	}
+	
+	.d-text {
+		line-break: 20px;
+		text-align: center;
+	}
+	
+	.msg-input {
+		width: 100%;
+		border-radius: 3px;
+		padding: 5px;
+		border: 1px solid #CCC;
+	}
+	
+	.msg-textarea {
+		width: 100%;
+		height: 200px;
+		border-radius: 3px;
+		padding: 5px;
+		border: 1px solid #CCC;
+	}
+	
+	.ticket-thread {
+		padding: 5px 0px;
+		margin-top: 5px;
+		margin-left: -15px;
+		margin-right: -15px;
+		margin-bottom: 5px;
+	}
+	
+	.thread-status {
+		line-height: 25px;
+	}
+	
+	.head {
+		float: left;
+	}
+	
+	.head img {
+		width: 40px;
+		height: 40px;
+	}
+	
+	.head-name {
+		margin-left: 5px;
+		line-height: 20px;
+		float: left;
+	}
+	
+	.clear {
+		clear: both;
+	}
+	
+	.thread-contant {
+		margin-top: 5px;
+	}
+	
+	.del-btn {
+		line-height: 40px;
+		float: right;
+	}
+	
+	.member_info img {
+		width: 20px;
+	}
+	
+	.time {
+		color: #9a9a9a;
+	}
+	
+	.head-img img {
+		width: 90px;
+	}
+	
+	.back-span {
+		position: absolute;
+		left: 0px;
+	}
+	.form_lable{
+	font-weight: 400;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+.check_box{
+	margin-top: 15px;
+	position: relative;
+}
+.check_span{
+	margin-left: 25px;
+}
+.check_box{
+	margin-top: 15px;
+	position: relative;
+}
+.check_box label {
+	cursor: pointer;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 0;
+  	right: 80px;
+	background: #fff;
+	border:1px solid #ddd;
+	border-radius: 4px;
+}
+.check_box label:after {
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	background: transparent;
+	top: 5px;
+	left: 5px;
+	border: 3px solid #fff;
+	border-top: none;
+	border-right: none;
+ 
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.check_box input[type=checkbox]:checked  + label{
+	background-color: #004CFF;
+}
+
+input[type=checkbox] {
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+}

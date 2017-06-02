@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>会员列表</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/member.css"/>
+    <link rel="stylesheet" type="text/css" href="css/memberList.css"/>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/layer/layer.js"></script>
+    <script src="../../js/av-mini-0.6.1.js"></script>
+    <script src="../../js/leancloud.js"></script>
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .jy {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            background-color: #b3b3b3;
+            display: none;
+            position: absolute;
+        }
+
+        .eject_div {
+            z-index: 10000;
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            border-radius: 5px;
+            background-color: #fff;
+            font-size: 13px;
+            margin-left: -300px;
+            margin-top: -180px;
+            width: 600px;
+        }
+        .eject-title {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            background-color: #1D7DB1;
+            line-height: 25px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            background-color: #d9534f;
+        }
+        .close-btn {
+            position: absolute;
+            right: 2px;
+            top: 4px;
+            display: block;
+            width: 16px;
+            height: 16px;
+            border: 0px;
+            background-repeat: no-repeat;
+            background-image:url("../../images/iconfont-close.png");
+        }
+        .center {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .message-div
+        {
+
+        }
+        .message-temp{
+            width: 500px;
+            margin: auto;
+        }
+        .message-temp p{
+            padding: 5px;
+        }
+        .border{
+            border:1px #ddd solid;
+            border-radius: 3px;
+        }
+        .message-peoples{
+            padding: 8px;
+            width: 500px;
+            margin: auto;
+            margin-top: 10px;
+        }
+        .my_label{
+            font-size: 12px;
+            color: #333;
+        }
+        .li-member{
+            margin-left: 5px;
+            padding: 4px;
+            border-radius: 2px;
+            border: 1px #eee solid;
+        }
+        .waitingLoadingList{
+            padding-top:10% ;
+            font-size: 0;
+            display: block;
+            position: absolute;
+            background-color: #fff;
+            z-index: 999;
+            left: 0;
+            right: 0;
+            bottom: -100px;
+            text-align: center;
+            color: #6d6d6d;
+        }
+        .loading-text{
+            font-size: 18px;
+        }
+        .loadin-icon{
+            display: inline-block;
+            margin-top: 2px;
+            width:20px;
+            height: 20px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 20px;
+            background-image: url("../../images/loading-icon.gif");
+        }
+    </style>
+</head>
+<body>
+<div class="waitingLoadingList">
+    <P><i class="loadin-icon"></i></P>
+    <p class="loading-text">正在努力加载...</p>
+</div>
+<section id="list">
+    <div style="width: 100%;overflow-x: scroll;">
+        <h1 class="text-center">
+            <a href="addNewMember.html" class="btn btn-primary float-lt my-h1-btn">录入会员</a>
+            会员列表</h1>
+        <table id="member_list" class="table table-hover table-striped" style="min-width: 1400px;">
+            <thead>
+            <tr>
+                <td colspan="10" class="search-select" style="min-width: 992px">
+                    <select id="MemberBelongs">
+                        <option value="all">所有会员</option>
+                        <option value="mine">我的会员</option>
+                    </select>
+                    <select id="level">
+                        <option value="all">所有等级</option>
+                    </select>
+                    <select id="Disease">
+                        <option value="all">所有病情</option>
+                    </select>
+                    <select id="Hospital">
+                        <option value="all">所有医院</option>
+                    </select>
+                    <!--<select id="score">
+                        <option value="all">所有评分</option>
+                        <option value="5">五星</option>
+                        <option value="4">四星</option>
+                        <option value="3">三星</option>
+                        <option value="2">两星</option>
+                        <option value="1">一星</option>
+                    </select>-->
+                    <div class="member_search_input">
+                        <input type="text" id="memberName" placeholder="会员名称" list="memberList">
+                        <datalist id="memberList"></datalist>
+                        <ul class="member_list_by_py"></ul>
+                    </div>
+                    <input type="number" class="search-input" name="telNo" id="telNo" value="" placeholder="电话号码"/>
+                    <input id="searchBtn" type="button" class="btn btn-primary" value="查询"/>
+                    <input type="button" class="btn btn-danger" value="发送短信" style="margin-left: 20px" onclick="OpenSendDiv()"/>
+                </td>
+            </tr>
+            <tr>
+                <th><input id="parCheck" type="checkbox" value="all"/></th>
+                <th>头像</th>
+                <th>姓名</th>
+                <th>等级</th>
+                <th>会员到期时间</th>
+                <th>主管医生</th>
+                <th>所属医院</th>
+                <th>会员管家</th>
+                <th>专属客服</th>
+                <th>诊断病情</th>
+                <th>城市</th>
+                <th>最近日程</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="table-body" class="tbody">
+
+            <tr>
+                <td class="null-td" colspan="11">暂无记录</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<div class="page-div">
+    <div class="page float-rt">
+        <table class="page-table" border="0" cellspacing="" cellpadding="">
+            <tr>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+                </td>
+                <td>第<strong id="now"><!--1--></strong>页</td>
+                <td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="jy"></div>
+
+<div class="eject_div draggable">
+    <div class="eject-title handle"><span id="edit-title">选择短信模板</span><a href="javascript:closeAsk()" class="close-btn"></a>
+    </div>
+    <div class="center">
+        <select id="message-select" onchange="changeSelect(this)">
+            <option value="3">会员管家联系方式-新桥</option>
+            <option value="33">会员管家联系方式-中医院</option>
+            <option value="4">公司地址</option>
+            <option value="5">平台电话</option>
+            <option value="6">转账信息</option>
+        </select>
+    </div>
+    <div class="message-div">
+        <div class="center my_label">短信模板</div>
+        <div class="message-temp border">
+            <p id="message">
+                尊敬的会员，艾尔斯驻第三军医大附属新桥医院会员管家电话：18580525811，您挂号后可以直接与会员管家联系，她会陪同您前往医生办公室就诊，祝您身体健康！
+            </p>
+        </div>
+        <div class="center my_label">收信人</div>
+        <div class="message-peoples border">
+            <!--<span class="li-member">
+                张三
+            </span>-->
+        </div>
+    </div>
+    <div class="center">
+        <input id="edit-btn" type="button" value="确定发送" data="editNickName" class="btn btn-primary subButton" onclick="SendMessage()">
+        <input type="button" value="取消" class="btn btn-danger" onclick="closeAsk()">
+    </div>
+</div>
+<script src="js/CToPY.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/memberList.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/draggabilly.pkgd.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var $draggable = $('.draggable').draggabilly({
+            handle: '.handle'
+        });
+        var H = $(window).height();
+        var _h = $('.tbody').offset().top;
+        $('.waitingLoadingList').css('top',_h+'px');
+    });
+</script>
+</body>
+</html>

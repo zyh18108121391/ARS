@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>我跟进的关注者列表</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/member.css" />
+		<link rel="stylesheet" type="text/css" href="css/memberList.css" />
+
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/DateTimePicker.css" />
+		<script src="../../js/DateTimePicker.js"></script>
+		<script src="js/myFollowList.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#dtBox").DateTimePicker({
+					dateFormat: "yyyy-mm-dd"
+				});
+			});
+		</script>
+		<style type="text/css">
+			.tablebtn .btn{
+				padding: 4px 5px;
+				height: 28px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<section id="list">
+			<table id="member_list " class="table table-hover table-striped">
+				<caption>我跟进的关注者列表</caption>
+				<thead>
+					<tr>
+						<td colspan="10" class="search-select">
+							<select id="search-Statu">
+								<option value="3">已分配</option>
+								<option value="4">销售中</option>
+								<option value="5">销售成功</option>
+								<option value="-1">销售失败</option>
+								<option value="all">所有状态</option>
+							</select>
+							<select id="search-Hospital">
+								<option value="all">所有医院</option>
+							</select>
+							<input id="timeStart" type="text" class="search-input" name="" data-field="date" placeholder="开始时间" readonly/>
+							<input id="timeEnd" type="text" class="search-input"  data-field="date" placeholder="结束时间" readonly />
+							<input id="searchBtn" type="button" class="btn btn-primary" value="查询" onclick="Search()"/>
+							<input id="searchBtn" type="button" style="margin-left: 20px;" class="btn btn-danger" value="条件重置" onclick="reload()"/>
+						</td>
+					</tr>
+					<tr>
+						<th>姓名</th>
+						<th>电话</th>
+						<th>推荐医生</th>
+						<th>医生所属医院</th>
+						<th>状态</th>
+						<th>关注时间</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="table-body" class="tablebtn">
+					<tr>
+						<td class="null-td" colspan="7">暂无记录</td>
+					</tr>
+				</tbody>
+			</table>
+			<div id="dtBox"></div>
+		<div id="showTime"></div>
+		</section>
+		<div class="page-div">
+			<div class="page float-rt">
+				<table class="page-table" border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+						</td>
+						<td>第<strong id="now"><!--1--></strong>页</td>
+						<td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

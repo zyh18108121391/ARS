@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>档案录入</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/layer/layer.js"></script>
+    <script src="../../js/av-mini-0.6.1.js"></script>
+    <script src="../../js/leancloud.js"></script>
+    <link rel="stylesheet" href="../../css/DateTimePicker.css"/>
+    <script src="../../js/DateTimePicker.js"></script>
+    <script src="js/reportInput.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/report.css"/>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $("#dtBox").DateTimePicker({
+                dateFormat: "yyyy-mm-dd"
+            });
+        });
+    </script>
+    <script src="js/jquery.zclip.js"></script>
+    <link rel="stylesheet" href="magnificent/css/mag.css"/>
+    <link rel="stylesheet" href="magnificent/css/index.css"/>
+    <style type="text/css">
+        .controls-btns button {
+            color: #333;
+        }
+
+        .mt50 {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+<h1 id="copyBtn1" style="text-align: center;">档案录入</h1>
+<hr/>
+<div class="container-fluid" style="margin-bottom: 50px">
+    <div class="col-md-5" id="mgImg">
+        <div class="mag-eg-el-wrap img-thumbnail" style="height: 100%;display: none">
+            <div class="proportion" style="height: 100%;">
+                <div mag-thumb="drag" class="mag-eg-el">
+                    <img class="report-img" src=""/>
+                </div>
+                <div mag-zoom="drag" class="mag-eg-el">
+                    <img class="report-img" src=""/>
+                </div>
+                <div class="filler"></div>
+            </div>
+        </div>
+        <div class="input-imgName"></div>
+    </div>
+    <div class="col-md-7">
+        <fieldset id="fieldset">
+            <div class="input-contant">
+                <div class="re-type">
+                    档案类型:
+                    <select id="report-type" class="search-select" onchange="reportTypeSelect(this)">
+                        <option value="0">处方</option>
+                        <option value="1">检查报告</option>
+                        <option value="2">检验报告</option>
+                    </select>
+                </div>
+                <div class="re-contant">
+                    <!--处方输入框div start-->
+                    <div class="Prescription-div" style="display: block">
+                        <div class="marginB10">
+                            处方时间:<input id="P-Time" type="text" class="search-input" style="width: 150px;"
+                                        data-field="datetime" placeholder="处方时间" readonly/>
+                            <div class="pre-btn-group btn-group float-rt" data-toggle="buttons">
+                                <label class="radio1 btn btn-success btn-sm">
+                                    <input type="radio" name="preType" value="1" autocomplete="off" checked> 西药
+                                </label>
+                                <label class="radio2 btn btn-default btn-sm">
+                                    <input type="radio" name="preType" value="2" autocomplete="off"> 中药
+                                </label>
+                            </div>
+                        </div>
+                        <div class="marginB10">
+                            处方金额:<input id="P-Price" type="text" class="search-input" style="width: 150px;"
+                                        placeholder="处方金额(元)"/>
+                        </div>
+                        <div class="relative">
+                            药品明细：
+                            <div class="add-btn" style="top: -3px;" onclick="openAddDrugDiv()">
+                                <i></i>
+                                <span>药品</span>
+                            </div>
+                        </div>
+                        <div id="drug-li-html" class="relative">
+                            <div class="drug-li relative">
+                                <input type="text" oninput="searchDrug(this)" placeholder="药品名称"
+                                       class="drug-name search-input">
+                                <span class="flag-success" style="background-color: rgb(17, 205, 110);">√</span>
+                                <input type="number" placeholder="数量" class="search-input drug-count">
+                                <span class="unit"></span>
+                                <a href="javascript:;" onclick="deleteDrug(this)" class="drug-a-del">删除</a>
+                                <div class="DosageNAdministration">
+                                    <input type="text" placeholder="用法" class="usage-input search-input">
+                                    <input type="number" placeholder="使用期限" class="seupDate-input search-input"><span
+                                        class="span-text">天</span>
+                                </div>
+                            </div>
+                            <div class="search_results drug-search">
+                                <ul class="input_ul drug-search-input_ul">
+                                    <!-- <li>[西]艾普拉唑肠溶片<small>缓解胃肠道</small></li>
+                                     <li>[西]思密达<small>止泻药</small></li>-->
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px"><input type="button" class="btn btn-primary" value="添加药品"
+                                                             onclick="addDrugDivLi()"></div>
+                        <div class="marginB10 border-div">
+                            <div><span class="">临床诊断:</span></div>
+                            <div class="relative">
+                                <input type="text" date-type="0" oninput="searchDisease(0)" placeholder="病种名称"
+                                       class="my-input Pre-disease-input input-disease">
+                                <div class="search_results disease-search" onmouseover="serchMouseOver()"
+                                     onmouseout="serchMouseOut()">
+                                    <ul class="input_ul disease-search-input">
+                                        <!--<li>十二指肠憩室</li>
+                                        <li class="no-disease">没有找到该疾病<a class="btn btn-danger" href="#">添加并选中</a></li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="margintop10"><span class="">已选:</span></div>
+                            <ul class="Pre-disease-ul disease-ul">
+                                <!--<li class="btn btn-default" onclick="removeDisease(this)">慢性萎缩性胃炎伴中度肠化</li>
+                                <li  class="btn btn-default">十二指肠憩室</li>-->
+                            </ul>
+                            <div class="text-right">
+                                <small>PS:点击可取消</small>
+                            </div>
+                        </div>
+                    </div>
+                    <!--处方输入框div end-->
+
+                    <!--检查输入框div start-->
+                    <div class="Exam-div" style="display: none">
+                        <div class="marginB10">
+                            检查项目:<input id="ExamItem" type="text" class="search-input" style="width: 300px;"
+                                        placeholder="检查项目"/>
+                        </div>
+                        <div class="marginB10 relative">
+                            检查项目:<select class="search-select my-select" id="ExamClassDict"
+                                         onchange="selectExamClass(this)" style="width: 180px">
+                            <option value="all">请选择检查项目</option>
+                        </select>
+                            检查部位:<select class="search-select my-select" id="ExamSubClassDict" style="width: 180px">
+                            <option value="all">请选择检查部位</option>
+                        </select>
+                            <div class="add-btn" style="top: 6px;;right:-5px ;" onclick="openAddExamDiv()">
+                                <i></i>
+                                <span>类别</span>
+                            </div>
+                        </div>
+                        <div class="marginB10">
+                            检查时间:<input id="ExamDateTime" type="text" class="search-input" style="width: 150px;"
+                                        data-field="date" placeholder="检查时间" readonly/>
+                        </div>
+                        <div class="marginB10 border-div">
+                            <div><span class="">临床诊断:</span></div>
+                            <div class="relative">
+                                <input type="text" date-type="1" oninput="searchDisease(1)" placeholder="病种名称"
+                                       class="my-input Exa-disease-input input-disease">
+                                <div class="search_results disease-search" onmouseover="serchMouseOver()"
+                                     onmouseout="serchMouseOut()">
+                                    <ul class="input_ul disease-search-input">
+                                        <!--<li>十二指肠憩室</li>
+                                        <li class="no-disease">没有找到该疾病<a class="btn btn-danger" href="#">添加并选中</a></li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="margintop10"><span class="">已选:</span></div>
+                            <ul class="Exa-disease-ul disease-ul">
+                                <!--<li class="btn btn-default" onclick="removeDisease(this)">慢性萎缩性胃炎伴中度肠化</li>
+                                <li  class="btn btn-default">十二指肠憩室</li>-->
+                            </ul>
+                            <div class="text-right">
+                                <small>PS:点击可取消</small>
+                            </div>
+                        </div>
+                        <div class="marginB10">
+                            <span class="">检查所见:</span>
+                            <div>
+                                <textarea id="ExamFinding" class="my-textarea" placeholder="检查所见"></textarea>
+                            </div>
+                        </div>
+                        <div class="marginB10">
+                            <span class="">印象:</span>
+                            <div>
+                                <textarea id="Impression" class="my-textarea" placeholder="印象"></textarea>
+                            </div>
+                        </div>
+                        <div class="marginB10">
+                            <span class="">建议:</span>
+                            <div>
+                                <textarea id="Recommendation" class="my-textarea" placeholder="建议"></textarea>
+                            </div>
+                        </div>
+                        <div class="marginB10">
+                            <span class="">备注:</span>
+                            <div>
+                                <textarea id="Exam-Memo" class="my-textarea" placeholder="备注"></textarea>
+                            </div>
+                        </div>
+                        <div class="marginB10">
+                            <span class="">是否阳性:</span>
+                            <span class="">
+                            <input type="radio" name="IsAbnormal" value="0" checked/>否
+                            <input type="radio" name="IsAbnormal" value="1"/>是(病变)
+                        </span>
+                        </div>
+                    </div>
+                    <!--检查输入框div end-->
+
+                    <!--检验输入框div start-->
+                    <div class="Lab-div" style="display: none">
+                        <div class="marginB10 relative">
+                            检验标本:<select class="search-select my-select" id="SpecimenDict"
+                                         onchange="selectSpecimenDict(this)">
+                            <option value="all">请选择检验标本</option>
+                        </select>
+                            <div class="add-btn" style="top:6px ;" onclick="openAddLabDiv()">
+                                <i></i>
+                                <span>标本</span>
+                            </div>
+                        </div>
+                        <div class="marginB10 border-div">
+                            <span class="">检验目的:</span>
+                            <div>
+                                <table id="Cause" border="0" class="dise-table my-Cause-table" cellspacing=""
+                                       cellpadding="">
+                                </table>
+                            </div>
+                        </div>
+                        <div class="marginB10">
+                            检验时间:<input id="LabDateTime" type="text" class="search-input" style="width: 150px;"
+                                        data-field="date" placeholder="检验时间" readonly/>
+                        </div>
+                        <div class="marginB10 border-div" id="Item">
+                            <!--<div class="item-div-li">
+                                <div class="Item-name">[血常规]</div>
+                                <table class="table table-striped" style="margin-bottom: 0px">
+                                    <thead>
+                                    <tr>
+                                        <th>标本</th>
+                                        <th>检验值</th>
+                                        <th>检验标志</th>
+                                        <th>描述</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>-->
+                        </div>
+                        <div class="marginB10 border-div">
+                            <div><span class="">临床诊断:</span></div>
+                            <div class="relative">
+                                <input type="text" date-type="2" oninput="searchDisease(2)" placeholder="病种名称"
+                                       class="my-input Lab-disease-input input-disease">
+                                <div class="search_results disease-search" onmouseover="serchMouseOver()"
+                                     onmouseout="serchMouseOut()">
+                                    <ul class="input_ul disease-search-input">
+                                        <!--<li>十二指肠憩室</li>
+                                        <li class="no-disease">没有找到该疾病<a class="btn btn-danger" href="#">添加并选中</a></li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="margintop10"><span class="">已选:</span></div>
+                            <ul class="Lab-disease-ul disease-ul">
+                                <!--<li class="btn btn-default" onclick="removeDisease(this)">慢性萎缩性胃炎伴中度肠化</li>
+                                <li  class="btn btn-default">十二指肠憩室</li>-->
+                            </ul>
+                            <div class="text-right">
+                                <small>PS:点击可取消</small>
+                            </div>
+                        </div>
+                    </div>
+                    <!--检验输入框div end-->
+                    <div id="dtBox"></div>
+                    <div id="showTime"></div>
+                </div>
+                <div class="btn-div">
+                    <input type="button" class="from-list btn btn-primary next-rep" value="保存并下一张" onclick="saveBtn()">
+                    <input id="next-btn" type="button" class="from-list btn btn-danger next-rep" value="下一张" onclick="nextRep()" disabled="disabled">
+                    <input type="button" class="from-list btn btn-danger" value="返回列表" onclick="backToList()">
+
+                    <input type="button" class="from-member btn btn-primary" value="保存并返回" onclick="saveBtn()">
+                    <input type="button" class="from-member btn btn-danger" value="取消" onclick="back()">
+                    <a href="javascript:deleteReport();" class="icon-btn-cls delete-icon float-rt"></a>
+                    <a href="javascript:openMergeDiv();" class="icon-btn-cls merge-icon float-rt"></a>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="jy"></div>
+<!--描述：弹出div窗口 -->
+<div id="drug-div" class="eject_div Drug-eject_div draggable">
+    <div class="Eject-title relative handle"><span id="eject-title">增加药品</span>
+        <a href="javascript:closeEjectDiv()" class="close-btn"></a>
+    </div>
+    <div class="relative check-h1">
+        <span class="addQueBtn1 btn check-active" onclick="ClickOne(this,'drug')">添加药品</span>
+        <span class="addQueBtn2 btn active2" onclick="ClickTwo(this,'drug')">添加药品类型</span>
+    </div>
+    <div class="my-table-div drug-div">
+        <table class="table table-striped eject-table">
+            <tr>
+                <th>药品名称</th>
+                <td>
+                    <input type="text" id="DrugName" placeholder="药品名称"/>
+                </td>
+                <th>通用名称</th>
+                <td>
+                    <input type="text" id="CADN" placeholder="通用名称"/>
+                </td>
+                <th>药品类型</th>
+                <td>
+                    <select class="" id="DrugType">
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>剂量描述</th>
+                <td>
+                    <input type="text" id="DoseDescription" placeholder="剂量描述"/>
+                </td>
+                <th>国药准字</th>
+                <td>
+                    <input type="text" id="Medicine" placeholder="国药准字"/>
+                </td>
+                <th>单位</th>
+                <td>
+                    <input type="text" id="Unit" placeholder="包、盒、袋、瓶、等"/>
+                </td>
+            </tr>
+            <tr>
+                <th>用法用量</th>
+                <td>
+                    <textarea type="text" id="DosageNAdministration" placeholder="主治功能"></textarea>
+                </td>
+                <th>药理作用</th>
+                <td>
+                    <input type="text" id="PharmacologicalActions" placeholder="药理作用"/>
+                </td>
+                <th>主治功能</th>
+                <td>
+                    <textarea type="text" id="Purpose" placeholder="主治功能"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>主要成分</th>
+                <td>
+                    <textarea type="text" id="MajorIngredient" placeholder="主要成分"></textarea>
+                </td>
+                <th>用药禁忌</th>
+                <td>
+                    <textarea type="text" id="Contraindication" placeholder="用药禁忌"></textarea>
+                </td>
+                <th>不良反应</th>
+                <td>
+                    <textarea type="text" id="AdverseReaction" placeholder="用药禁忌"></textarea>
+                </td>
+            </tr>
+        </table>
+        <hr class="my-hr"/>
+        <div class="edit-div-li">
+            <input type="button" class="btn btn-danger" value="确定" onclick="drugAdd()"/>
+        </div>
+    </div>
+    <div class="my-table-div drug-type-div" style="display: none">
+        <div>
+            <div class="drug-type-input">
+                药品类型:<input id="DrugTypeName" type="text" placeholder="类型名称">
+            </div>
+        </div>
+        <hr class="my-hr"/>
+        <div class="edit-div-li">
+            <input type="button" class="btn btn-danger" value="确定" onclick="drugTypeAdd()"/>
+        </div>
+    </div>
+</div>
+<div id="Exam-div" class="eject_div Exam-eject_div draggable">
+    <div class="Eject-title relative handle"><span>增加检查项目</span>
+        <a href="javascript:closeEjectDiv()" class="close-btn"></a>
+    </div>
+    <div class="relative check-h1">
+        <span class="addQueBtn1 btn check-active" onclick="ClickOne(this,'exam')">添加检查部位</span>
+        <span class="addQueBtn2 btn active2" style="left: 110px;" onclick="ClickTwo(this,'exam')">添加检查项目</span>
+    </div>
+    <div class="marginB10 exam-type" style="text-align: center">
+        <div class="center-div">
+            <div><span>检查项目:</span>
+                <select class="eject-hight eject-width" id="ExamClass">
+                    <option>请选择检查项目</option>
+                </select>
+            </div>
+            <div style="margin-top: 10px"><span>检查部位:</span>
+                <input class="eject-hight eject-width" type="text" id="subExamClass" placeholder="部位名称"/>
+            </div>
+        </div>
+        <hr class="my-hr"/>
+        <div class="edit-div-li">
+            <input type="button" class="btn btn-danger" value="确定" onclick="examSubTypeAdd()"/>
+        </div>
+    </div>
+    <div class="marginB10 exam-sub-type" style="text-align: center">
+        <div class="center-div">
+            <div style="margin-top: 10px"><span>检查项目:</span>
+                <input id="examTypeName" class="eject-hight eject-width" type="text" placeholder="项目名称"/>
+            </div>
+            <!--<div style="margin-top: 10px"><span>&nbsp;输&nbsp;入&nbsp;码:</span>
+                <input id="InputCode" class="eject-hight eject-width" type="text" placeholder="输入码"/>
+            </div>-->
+        </div>
+        <hr class="my-hr"/>
+        <div class="edit-div-li">
+            <input type="button" class="btn btn-danger" value="确定" onclick="examTypeAdd()"/>
+        </div>
+    </div>
+</div>
+<div id="Lab-div" class="eject_div Lab-eject_div draggable">
+    <div class="Eject-title relative handle"><span>增加检验标本</span>
+        <a href="javascript:closeEjectDiv()" class="close-btn"></a>
+    </div>
+    <div class="relative check-h1">
+        <span class="addQueBtn1 btn check-active" onclick="ClickOne(this,'Lab')">添加检验标本</span>
+        <span class="addQueBtn2 btn active2" style="left: 110px;" onclick="ClickTwo(this,'Lab')">添加检查项目</span>
+    </div>
+    <div class="marginB10 Lab-item" style="padding: 8px">
+        <div class="">
+            <div><span>检验标本:</span><select class="eject-hight eject-width" id="SpecimenDict-eje2"
+                                           onchange="selectSpe(this)">
+                <option value="all">请选择检验标本</option>
+            </select>
+                <a id="AddLabName" href="javascript:showAddLabName()">新增标本</a>
+                <input type="text" id="LabName" class="LabName-input" placeholder="标本名称如：静脉血"/>
+            </div>
+            <div class="my-clearfix" style="margin-top: 10px">
+                <div class="float-lt">检验目的:</div>
+                <div class="float-lt">
+                    <table id="Lab-cause" border="0" class="dise-table my-Cause-table" cellspacing="" cellpadding="">
+                    </table>
+                    <div id="add-cause-div">
+                        <div><input id="other-cause" type="text" style="width: 150px" placeholder="其他目的名称如：血常规"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <hr class="my-hr"/>
+        <div class="edit-div-li">
+            <input type="button" class="btn btn-danger" value="确定" onclick="LabSpeAdd()"/>
+        </div>
+    </div>
+    <div class="marginB10 Lab-spe" style="padding: 8px;display: none">
+        <div class="">
+            <div><span>检验标本:</span>
+                <select class="eject-hight eject-width" id="SpecimenDict-eje" onchange="EjectSelectSpe(this)">
+                    <option value="all">请选择检验项目</option>
+                </select>
+            </div>
+            <div style="margin-top: 10px"><span>检验目的:</span>
+                <select class="eject-hight eject-width" id="ClinicCauseDict">
+                    <option value="all">请选择检验目的</option>
+                </select>
+            </div>
+            <div style="margin-top: 10px"><span>新增检验项目:</span>
+                <div id="item-DIV" class="item-DIV">
+                    <div class="my-clearfix">项目名称：<input class="ItemName" oninput="IsExist(this)" type="text" placeholder="项目名称如：蛋白质"/>计量单位：<input class="MeasuresName" type="text" placeholder="计量单位如：g/L"/>参考范围：<input class="Describe" type="text" placeholder="参考范围如：0-99"/><a href="javascript:;" onclick="delLabLi(this)" class="drug-a-del lab-delete-a">删除</a>
+                    </div>
+                </div>
+            </div>
+            <input type="button" class="btn btn-default" style="padding: 5px;font-size: 12px" value="添加项目" onclick="AddLabItemHtml()">
+        </div>
+        <hr class="my-hr"/>
+        <div class="edit-div-li">
+            <input type="button" class="btn btn-danger" value="确定" onclick="LabItemAdd()"/>
+        </div>
+    </div>
+</div>
+<div id="Merge-div" class="eject_div Merge-eject_div draggable" style="display: block;z-index: -1;opacity: 0">
+    <div class="Eject-title relative handle"><span>档案合并</span>
+        <a href="javascript:closeEjectDiv()" class="close-btn"></a>
+    </div>
+    <div class="marginB10" style="padding: 8px">
+        <div id="merge-report-list">
+            <div style="margin-top: 5px">
+                当前档案ID：<span id="merge" class="merge-IDtext" style="width: 250px"></span><span id="copyBtn" style="margin-left: 4px">复制</span>
+            </div>
+            <div style="margin-top: 5px">
+                其它档案ID：<input type="text" placeholder="档案ID" style="width: 250px"><a class="merge-a" href="javascript:;"
+                                                                                     onclick="delteMergeList(this)">删除</a>
+            </div>
+        </div>
+        <div style="margin-top: 5px">
+            <a href="javascript:addMergeList()">+更多</a>
+        </div>
+        <div style="margin-top: 5px">
+            合并后图片：<input id="mergeImg" type="file" style="display: inline-block">
+        </div>
+    </div>
+
+    <div class="edit-div-li">
+        <input type="button" class="btn btn-danger" value="合并" onclick="MergeReport()"/>
+    </div>
+</div>
+<script src="../../js/draggabilly.pkgd.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var $draggable = $('.draggable').draggabilly({
+            handle: '.handle'
+        });
+    });
+</script>
+<script src="magnificent/js/jquery.bridget.js"></script>
+<script src="magnificent/js/jquery.mousewheel.min.js"></script>
+<script src="magnificent/js/jquery.event.drag.js"></script>
+<script src="magnificent/js/PreventGhostClick.js"></script>
+<script src="magnificent/js/mag.js"></script>
+<script src="magnificent/js/mag-jquery.js"></script>
+<script>
+    $host = $('[mag-thumb="drag"]');
+    $host.mag({
+        position: 'drag',
+        toggle: false
+    });
+</script>
+<script>
+    $('#copyBtn').zclip({
+        path: "js/ZeroClipboard.swf",
+        copy: function () {
+            return $('#merge').html();
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>医嘱推送</title>
+
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/ui-dialog.css">
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+
+		<!--头部公共 end-->
+
+		<script src="js/memberPushMsg.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/member.css" />
+	</head>
+
+	<body>
+		<h2 class="sub-header">医嘱推送</h2>
+		<div>
+			选择模板：<select id="adviceSelect" style="width: 200px;">
+					
+			</select>
+			<span style="margin-left: 100px;">发送给：<span style="color: #204D74;"><strong id="name"></strong> </span></span>
+		</div>
+		<div style="margin-top: 10px;">
+			<table id="orderTable" class="table" style="margin-bottom: 0px">
+				
+				<tr>
+					<th>标题:</th>
+					<td><input type="text" id="Title" value="" class="msg-input"/ placeholder="请输入标题或选择任意模板"></td>
+				</tr>
+				<tr>
+					<th>内容:</th>
+					<td><textarea id="Content" class="msg-textarea" name="" rows="" cols="" placeholder="请正文标题或选择任意模板"></textarea></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td></td>
+				</tr>
+			</table>
+			<div style="text-align: center"> <input type="button" class="btn btn-danger"  onclick="sendAdvice()" value="确认推送" /></div>
+		</div>
+		<h3 class="sub-header">推送历史</h3>
+		<table id="member_list" class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th>接收者</th>
+            <th>标题</th>
+            <th>正文</th>
+            <th>发送时间</th>
+       	</tr>
+       	 </thead>
+        <tbody id="tbody">
+        	<td>1</td>
+        	<td>2</td>
+        	<td>3</td>
+        	<td>4</td>
+        </tbody>
+    </table>
+	</body>
+
+</html>

@@ -1,0 +1,17 @@
+caption{
+    text-align: center;
+    font-size: 30px;font-weight: 500;
+    color:#333333;
+}
+.search-select select{
+}
+.my-td{
+	max-width: 200px;
+}
+select {
+    height: 35px;
+}
+.my-h1-btn{
+    margin-top: 3px;
+    margin-left: 5px;
+}

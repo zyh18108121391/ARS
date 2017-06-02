@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>诊断历史</title>
+
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+		<link rel="stylesheet" href="../../css/ui-dialog.css">
+		<link rel="stylesheet" type="text/css" href="css/member.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/dialog-plus-min.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+
+		<!--头部公共 end-->
+		
+		<script src="js/MedicalResultList.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="table-responsive" style="margin-top:0">
+			<table id="orderDetail" class="table table-striped">
+				<thead>
+				
+					<tr>
+						<th>医生姓名</th>
+						<th>就诊类型</th>
+						<th>就诊时间</th>
+						<th>就诊医院名</th>
+						<th>医生诊断</th>
+						<th>医生嘱咐</th>
+						<th>状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="table-body">
+
+				</tbody>
+			</table>
+			<div class="page-div">
+			<div class="page float-rt">
+				<table class="page-table" border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+						</td>
+						<td>第<strong id="now"><!--1--></strong>页</td>
+						<td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		</div>
+	</body>
+
+</html>

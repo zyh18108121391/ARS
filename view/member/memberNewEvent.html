@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>新建预约</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="css/DateTimePicker.css"/>
+    <link rel="stylesheet" href="css/member.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/memberCommon.css"/>
+    <link rel="stylesheet" type="text/css" href="css/memberNewEvent.css"/>
+
+    <script src="../../js/av-mini-0.6.1.js"></script>
+    <script src="../../js/leancloud.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/layer/layer.js"></script>
+    <script src="../../js/DateTimePicker.js"></script>
+    <script src="js/main.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#dtBox").DateTimePicker({
+                dateFormat: "yyyy-mm-dd"
+            });
+        });
+    </script>
+    <style>
+        .call-select{
+            height: 26px;
+            width: 170px;
+        }
+    </style>
+</head>
+<body>
+<section id="NewEvent" class="NewEvent" style="display: block;">
+    <h2 class="sub-header">新建预约</h2>
+    <div class="table-responsive">
+        <table id="orderTable" class="table table-striped">
+            <tr>
+                <td class="tit">会员:</td>
+                <td>
+                    <span id="memberName">无</span>
+                   <!-- <span class="selectMember" onclick="selectMember()">点击选择会员</span>-->
+                </td>
+                <td class="tit">事项:</td>
+                <td>
+                    <select class="call-select" name="EventType" id="EventType"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tit">可预约时间:</td>
+                <td>
+                    <select id="canOrderTime" class="call-select">
+                        <option>暂无可预约时间</option>
+                    </select>
+                    <input  id="OrderSpecificTime" data-field="time" value="8:00" type="text" placeholder="请选择时间点" readonly style="width: 50px">
+                </td>
+                <td class="tit">其它时间:</td>
+                <td class="span_select">
+                    <span class="no_select_o_t">点击选择其它时间</span>
+
+                </td>
+            </tr>
+            <tr class="other_time">
+                <td class="tit">预约日期:</td>
+                <td>
+                    <input type="text" id="time" data-field="date" style="width: 170px;" readonly>
+                </td>
+                <td class="tit">预约时间:</td>
+                <td>
+                    <input type="text" id="times" data-field="time"  style="width: 170px;" readonly>
+                </td>
+                <div id="dtBox"></div>
+                <div id="showTime"></div>
+            </tr>
+            <tr class="other_time">
+                <td class="tit">医院:</td>
+                <td >
+                    <select class="call-select" name="Hospital" id="Hospital">
+                    </select>
+                </td>
+                <td class="tit">诊室:</td>
+                <td id="City">
+                    <select class="call-select" name="ConsultingRoom" id="ConsultingRoom">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="tit">提醒时间:</th>
+                <td>
+                    <input type="text" id="RemindTime" data-field="datetime" style="width:170px;" readonly>
+                </td>
+                <td class="tit">注意事项:</td>
+                <td>
+                    <textarea id="notice" name="" rows="" cols="" style="width: 300px;"></textarea>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="tit">相关资料图片:</td>
+                <td class="up_photos">
+                    <div>
+                        可选多张图片
+                    </div>
+                    <div class="input_img">
+                        <label for="Image">选择图片</label>
+                        <input id="Image" class="Image" type="file" multiple>
+                    </div>
+                    <div class="img_container"></div>
+                </td>
+                <td></td><td></td>
+            </tr>
+        </table>
+        <div>
+        	<input type="button" class="btn btn-danger" name="" id="" value="返回" onclick="back()" />
+            <input type="button" class="btn btn-primary" name="" id="subButton" onclick="NewEvent()" value="确定预约"/>
+        </div>
+    </div>
+</section>
+
+<section id="list" class="memberList" style="display: none;">
+    <table id="member_list" class="table table-hover table-striped">
+        <caption> 会员列表 </caption>
+        <thead>
+        <tr>
+            <td colspan="10" class="search-select">
+                <select id="level">
+                    <option value="all">所有会员</option>
+                </select>
+                <select id="Disease">
+                    <option value="all">所有病情</option>
+                </select>
+                <select id="score">
+                    <option value="all">所有评分</option>
+                    <option value="5">五星</option>
+                    <option value="4">四星</option>
+                    <option value="3">三星</option>
+                    <option value="2">两星</option>
+                    <option value="1">一星</option>
+                </select>
+                <input id="searchBtn" type="button" class="btn btn-primary" value="查询"/>
+            </td>
+        </tr>
+        <tr>
+            <th>选择</th>
+            <th>头像</th>
+            <th>姓名</th>
+            <th>等级</th>
+            <th>加入时间</th>
+            <th>诊断病情</th>
+            <th>城市</th>
+            <th>最近日程</th>
+            <th>满意度</th>
+            <th>活跃度</th>
+        </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+    <div>
+        <input type="button" class="btn btn-danger subButton" name="" onclick="SelectBtn()" value="确定"/>
+        <input type="button" class="btn btn-danger subButton" name="" onclick="SelectBack()" value="取消"/>
+    </div>
+</section>
+<script src="js/memberCommon.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/memberNewEvent.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

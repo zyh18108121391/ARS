@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>历史工单</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/main.css">
+
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="js/WorkHistory.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			caption { 
+				text-align: center;
+				font-size: 30px;
+				font-weight: 500;
+				color: #333333;
+			}
+			#table-body td{
+				max-width: 220px;
+			}
+			.search-select{
+				margin-left: 10px;
+				width: 110px;
+				line-height: 34px;
+				padding: 0px 5px;
+			}
+			.search-btn{
+				margin-left: 5px;
+			}
+			.search-div{
+				border-bottom: 1px #ddd solid;
+				padding-bottom:10px ;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1 style="text-align: center;">历史工单</h1>
+		<table id="member_list" class="table table-hover table-striped">
+        <div class="search-div relative">
+        	<select id="statu" name="" class="search-select">
+        		<option value="0">所有状态</option>
+        		<option value="-1">销售失败</option>
+        		<option value="1">新建</option>
+        		<option value="2">已流转</option>
+        		<option value="3">已分配销售员</option>
+        		<option value="4">销售员处理完毕</option>
+        		<option value="5">已回访</option>
+        		<option value="11">意向销售成功</option>
+        		<option value="21">签约</option>
+        	</select>
+        	<select id="PurchaseIntention" name="" class="search-select">
+        		<option value="0">所有意向</option>
+        		<option value="-1">失败</option>
+        		<option value="1">待跟进</option>
+        		<option value="11">有意向</option>
+        	</select>
+        	<select id='ProductIntention' name="" class="search-select">
+        		<option value="0">所有套餐意向</option>
+        	</select>
+        	<input type="button" name="" class="search-btn btn btn-primary" id="" value="查询" onclick="search()"/>
+        </div>
+        <thead>
+        <tr>
+            <th>来电者姓名</th>
+            <th>电话归属地</th>
+            <th>购买意向</th>
+            <th>套餐意向</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
+        	
+        </tbody>
+        
+   </table>
+	</body>
+
+</html>

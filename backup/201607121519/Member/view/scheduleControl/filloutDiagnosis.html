@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>填写诊断结果</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/DateTimePicker.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/DateTimePicker.js"></script>
+    <script src="https://cdn1.lncld.net/static/js/av-min-1.0.0.js"></script>
+    <script>
+        AV.init({
+            appId: 'to0nyg7vtky1bna4ybrclwrm3hm0r94oqw45eiost7mqrbi5',
+            appKey: 'kbq185r1thmzpbod54og7ml9vll7pzmb5yegd2jyyfcw3qaa'
+        });
+    </script>
+    <style>
+        .container{margin-top:30px;padding-bottom: 30px}
+        .title{text-align: center;font-size: 22px;margin-bottom:10px}
+        .col-md-2{width:140px;height:150px;text-align: center;margin:10px;cursor: pointer}
+        .col-md-2 img{width:120px;height:130px}
+        .row{margin-left: 35px}
+        .btn-primary{margin: 10px}
+        .sure{margin-left: 60px}
+        #upFile{display:none;position: fixed;width:100%;height:100%;background: rgba(50,50,50,0.5);top:0;left:0}
+        .inner{position:absolute;background: #FFFFFF;width:300px;height:100px;
+            left:50%;top:50%;margin:-100px 0 0 -150px;text-align: center;padding: 10px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="title">
+        填写诊断结果
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="inputEmail1" class="col-sm-2 control-label">会员姓名：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="inputEmail1" placeholder="会员姓名" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword2" class="col-sm-2 control-label">医生姓名：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="inputPassword2" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">就诊类型：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="inputPassword3" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword5" class="col-sm-2 control-label">就诊医院：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="inputPassword5" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="time" class="col-sm-2 control-label">就诊时间：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="time" data-field="datetime">
+                <div id="dtBox"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword7" class="col-sm-2 control-label">医生诊断：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="inputPassword7" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword8" class="col-sm-2 control-label">医生嘱咐：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="inputPassword8" placeholder="">
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-2"><img src="../../images/young.jpg" alt="NO"><span>Name</span></div>
+        <button class="btn btn-primary">+</button>
+    </div>
+    <div>
+        <button class="btn btn-danger sure">保存</button>
+    </div>
+    <div id="upFile">
+        <div class="inner">
+            <label for="exampleInputFile">选择图片</label>
+            <input type="file" id="exampleInputFile" accept="image/*">
+            <button class="btn btn-danger">上 传</button>
+        </div>
+    </div>
+</div>
+<script src="../../js/scheduleControl/filloutDiagnosis.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#dtBox").DateTimePicker({
+            dateFormat: "yyyy-MMM-dd"
+        });
+    });
+</script>
+</body>
+</html>

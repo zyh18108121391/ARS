@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>所有日程</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="https://cdn1.lncld.net/static/js/av-min-1.0.0.js"></script>
+    <script src="../member/js/main.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        AV.init({
+            appId: 'to0nyg7vtky1bna4ybrclwrm3hm0r94oqw45eiost7mqrbi5',
+            appKey: 'kbq185r1thmzpbod54og7ml9vll7pzmb5yegd2jyyfcw3qaa'
+        });
+    </script>
+    <style>
+        th,td{text-align: center}
+        button{margin:3px;font-size: 12px!important;}
+    </style>
+</head>
+<body>
+<table id="member_list" class="table table-hover table-striped">
+    <caption style="text-align: center;font-size: 22px">
+        日程列表
+    </caption>
+    <thead>
+    <tr>
+    	<th>会员</th>
+        <th>事项</th>
+        <th>确认预约时间</th>
+        <th>医院名称</th>
+        <th>诊室名称</th>
+        <th>诊断结果</th>
+        <th>状态</th>
+        <th>会员评分</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="tr_info">
+
+    </tbody>
+</table>
+
+<script src="../../js/scheduleControl/schedules.js"></script>
+</body>
+</html>

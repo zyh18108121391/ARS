@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/main.css">
+
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+		
+		<!--push model-->
+		<script src="../../js/AV.push.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/MyPushAndCallPublic.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/DoctorCallOut.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../call/css/call.css"/>
+		<style type="text/css">
+			body {
+				padding-top: 10px;
+				padding-bottom: 30px;
+			}
+			
+			select {
+				padding-left: 5px;
+			}
+			.calloutHpBtn{
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="audio-div">
+		<span class="close-btn1" onclick="closeBtn()"></span>
+		<span class="audio-arrow"></span>
+		<audio id="audio" controls="controls" src="">
+			<y>浏览器不支持在线播放</y>
+		</audio>
+	</div>
+		<div class="btn-list">
+			<input type="button" class="btn btn-danger calloutHpBtn" value="挂断通话" onclick="callOutHangUp()"/>
+			<a class="search-btn" href="javascript:openWiki()"></a>
+		</div>
+		
+		<div class="header">去电医生基本信息</div>
+		<div class="table-responsive">
+			<table id="tale-have" class="table table-striped my-call-table" style="margin-bottom: 10px;">
+				<tr>
+					<th>姓名</th>
+					<td id="Name"></td>
+					<th>电话</th>
+					<td id="tellNo"></td>
+					
+				</tr>
+				<tr>
+					<th>执业医院</th>
+					<td id="Hospitals"></td>
+					<th>主要执业医院</th>
+					<td id="MainHospital"></td>
+				</tr>
+				<tr>
+					<th>可用诊室</th>
+					<td id="ConsultingRooms"></td>
+					<th>服务事件</th>
+					<td id="AcceptedEventType"></td>
+				</tr>
+				<tr style="height: 0px;">
+					<th style="height: 0px;padding: 0px;" </th>
+					<td colspan="5" style="height: 0px;padding: 0px;"></td>
+				</tr>
+			</table>
+			<!--非会员编辑区-->
+			<table id="tale-no" class="table table-striped" style="margin-bottom: 10px;display: none">
+				<tr>
+					<th>姓名</th>
+					<td id="Name">13</td>
+					<th>所在城市</th>
+					<td id="City">成都</td>
+				</tr>
+				<tr>
+					<th colspan="1">诊断病情</th>
+					<td colspan="3" id="Disease">123</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		
+		<!--新建预约结束-->
+		<div class="header">近期日程</div>
+		<table id="calender_list" class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>事项</th>
+					<th>对象</th>
+					<th>确认预约时间</th>
+					<th>医院名称</th>
+					<th>诊室名称</th>
+					<th>诊断结果</th>
+					<th>状态</th>
+					<th>会员评分</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="tbody-list">
+				<tr><td class="null-td" colspan="9">暂无记录</td></tr>
+			</tbody>
+		</table><!--近期日程结束-->
+		<div class="header">通话记录<small style="font-size: 14px;color: #aaa;">(最近五条)</small></div>
+		<table class="table table-hover record-table table-striped">
+			<thead>
+				<tr>
+					<th>对象(坐席)</th>
+					<th>通话时长</th>
+					<th>录音文件</th>
+					<th>备注</th>
+					<th>客户评分</th>
+					<th>通话日期</th>
+				</tr>
+			</thead>
+			<tbody id="CallRecordList">
+				<tr><td class="null-td" colspan="5">暂无记录</td></tr>
+			</tbody>
+		</table><!--通话记录结束-->
+		
+		<div class="jy"></div>
+		<div class="wiki-div">
+			<div class="wiki-title relative">知识库搜索
+				<a href="javascript:closeWiki()" class="close-btn"></a>
+			</div>
+			<iframe src="http://wiki.arshmc.cn:3000/" width="100%" height="100%"></iframe>
+		</div>
+		<div class="refuse-div">
+			<div class="wiki-title relative" style="background-color:#d9534f;">
+				<span class="title">重新协调</span>
+				<a href="javascript:closeRefuse()" class="close-btn"></a>
+			</div>
+			<div>
+				<table id="calender_list" class="table refuse-table table-hover table-striped">
+					<tr class="refuse-check">
+						<th id="refuse-name" style="line-height: 34px;">协调日期</th>
+						<td>
+							<select id="canOrderTime2" style="width: 100%;line-height: 32px;">
+							</select>
+						</td>
+					</tr>
+				</table>
+				<div style="text-align: center;"><input type="button" class="btn btn-primary" id="refuse-btn" value="确定" /></div>
+				
+			</div>
+		</div>
+		<div class="btn-list">
+			<input type="button" class="btn btn-danger calloutHpBtn" value="挂断通话" onclick="callOutHangUp()"/>
+			<a class="search-btn" href="javascript:openWiki()"></a>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工单编辑</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/layer/layer.js"></script>
+    <script src="../../js/av-mini-0.6.1.js"></script>
+    <script src="../../js/leancloud.js"></script>
+    
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="css/order.css" />
+    <script src="js/waitingChangeEdit.js"></script>
+ 
+</head>
+<body>
+<h2 class="sub-header" style="width: 100%;display: block;">
+    工单详情<span id="buts" style="text-align: right;margin-left: 200px;"></span>
+</h2>
+<div class="table-responsive">
+    <table id="orderTable" class="table table-striped">
+        <tr>
+            <th>来电者姓名</th>
+            <td id="MemberName"></td>
+            <th>联系电话</th>
+            <td id="PhoneNo"></td>
+        </tr>
+        <tr>
+            <th>所患病症</th>
+            <td id="Disease"></td>
+            <th>状态</th>
+            <td id="Statu"></td>
+        </tr>
+        <tr>
+            <th>客服意见和备注</th>
+            <td id="Memo"></td>
+            <th></th>
+            <td></td>
+        </tr>
+       
+    </table>
+    <div>
+    	<input type="button" class="btn btn-danger" name="" id="" value="保存" onclick="edit()" style="margin-left: 10px;"/>
+    	<input type="button" class="btn btn-danger" name="" id="" value="保存并流转" onclick="edit()" style="margin-left: 10px;"/>
+    </div>
+</div>
+</body>
+</html>

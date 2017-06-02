@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>会员详情</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script src="../../js/layer/layer.js"></script>
+    <script src="../../js/laydate/laydate.js"></script>
+    <script src="../../js/av-mini-0.6.1.js"></script>
+    <script src="../../js/leancloud.js"></script>
+    <script src="../../js/AV.push.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/MyPushAndCallPublic.js" type="text/javascript" charset="utf-8"></script>
+
+    <!--头部公共 end-->
+
+    <script src="js/memberDetail.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="css/member.css"/>
+</head>
+
+<body>
+<div class="audio-div">
+    <span class="close-btn1" onclick="closeBtn()"></span>
+    <span class="audio-arrow"></span>
+    <audio id="audio" controls="controls" src="">
+        <y>浏览器不支持在线播放</y>
+    </audio>
+</div>
+<h2 class="sub-header relative">会员详情
+    <a class="showEditA" href="javacript:;" onclick="showEditBtn()"></a>
+    <span class="btn btn-primary list-btn MedicalBtn" onclick="AddMedicalResults()">录入系统外档案</span>
+    <span id="call" class="btn btn-primary list-btn call-btn" date-type="call" name=""
+          onclick="call(this,'1')">拨打电话</span>
+</h2>
+<div class="table-responsive">
+    <table id="orderTable" class="table table-striped">
+        <tr>
+            <th>姓名</th>
+            <td id="MemberName"></td>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>专属客服</th>
+            <td id="personalAgent"></td>
+            <th>等级</th>
+            <td id="Leval"></td>
+        </tr>
+        <tr>
+            <th> 所在城市</th>
+            <td id="City"></td>
+            <th>电话</th>
+            <td id="MobilePhoneNo"></td>
+        </tr>
+        <tr>
+            <th>主治医生</th>
+            <td id="PersonalDoctor"></td>
+            <th>会员管家</th>
+            <td id="PersonalButler"></td>
+        </tr>
+        <tr>
+            <th>加入时间</th>
+            <td id="JoinTime"></td>
+            <th>诊断病情</th>
+            <td style="max-width: 300px">
+                <span id="Disease"></span>
+                <a class="td-editBtn" href="javascript:editDisease()"></a>
+            </td>
+        </tr>
+        <tr>
+            <th>到期时间</th>
+            <td id="ExpireTime"></td>
+            <th></th>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <th>活跃度</th>
+            <td id="Activeness"></td>
+            <th>会员满意度</th>
+            <td id="Satisfaction"></td>
+        </tr>
+        <tr style="height: 0px;">
+            <th colspan="1" style="height: 0px;padding: 0px;"></th>
+            <td colspan="3" style="height: 0px;padding: 0px;"></td>
+        </tr>
+    </table>
+</div>
+<div class="table-responsive">
+    <div class="detail-thead relative">
+				<span>更多基本资料
+				</span>
+        <!--<a class="editBtn" href="javascript:DataEdit()">编辑</a>-->
+    </div>
+    <table id="MoreData" class="table table-striped">
+        <tbody style="">
+        <tr>
+            <th>性别</th>
+            <td id="Sex" class="editFlag">
+                <!--<a class="td-editBtn" title="编辑"></a>-->
+            </td>
+            <th>身份证号</th>
+            <td id="IDCard" class="editFlag"></td>
+            <th>出生日期</th>
+            <td id="Birth"></td>
+        </tr>
+        <tr>
+            <th>婚否</th>
+            <td id="MaritalStatus" class="editFlag"></td>
+            <th>民族</th>
+            <td id="Nation" class="editFlag"></td>
+            <th>籍贯</th>
+            <td id="NativePlace" class="editFlag"></td>
+        </tr>
+        <tr>
+            <th>身高(cm)</th>
+            <td id="Height" class="editFlag"></td>
+
+            <th>地址</th>
+            <td id="Address" class="editFlag"></td>
+            <th>职业</th>
+            <td id="Profession" class="editFlag"></td>
+        </tr>
+        <tr>
+            <th>体重(kg)</th>
+            <td id="Weight" class="editFlag"></td>
+            <th>发病时间</th>
+            <td id="DiseaseTime" class="editFlag"></td>
+            <th>联系时间</th>
+            <td id="ContectTime"></td>
+        </tr>
+        <tr>
+            <th>病人ID</th>
+            <td id="PatientNo" class="editFlag"></td>
+            <th>备注</th>
+            <td id="Memo" class="editFlag"></td>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr style="height: 0px;">
+            <th colspan="1" style="height: 0px;padding: 0px;"></th>
+            <td colspan="5" style="height: 0px;padding: 0px;"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="table-responsive" style="margin-top:0">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>通话记录(最近10条)</th>
+        </tr>
+        <tr>
+            <th>对象(坐席)</th>
+            <th>通话时长</th>
+            <th>录音文件</th>
+            <th>备注</th>
+            <th>客户评分</th>
+            <th>通话日期</th>
+        </tr>
+        </thead>
+        <tbody id="CallRecordList">
+        <tr>
+            <td class="null-td" colspan="6">暂无记录</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="table-responsive" style="margin-top:0">
+    <table id="orderDetail" class="table table-striped">
+        <thead>
+        <tr>
+            <th>就诊记录</th>
+        </tr>
+        <tr>
+            <th>医生姓名</th>
+            <th>就诊类型</th>
+            <th>就诊时间</th>
+            <th>就诊医院名</th>
+            <th>医生诊断</th>
+            <th>医生嘱咐</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
+        <tr>
+            <td class="null-td" colspan="8">暂无记录</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="page-div">
+        <div class="page float-rt">
+            <table class="page-table" border="0" cellspacing="" cellpadding="">
+                <tr>
+                    <td>
+                        <a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+                    </td>
+                    <td>第<strong id="now"><!--1--></strong>页</td>
+                    <td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="table-responsive" style="margin-top:0">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>预约记录</th>
+        </tr>
+        <tr>
+            <th>事项</th>
+            <th>确认预约时间</th>
+            <th>医院名称</th>
+            <th>诊室名称</th>
+            <th>诊断结果</th>
+            <th>状态</th>
+            <th>会员评分</th>
+        </tr>
+        </thead>
+        <tbody id="schedules-table-body">
+        <tr>
+            <td class="null-td" colspan="7">暂无记录</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div style="text-align: center;" class="relative">
+    <input type="button" style="margin-bottom: 30px" data="" class="back-position btn btn-danger" name="" id="backbtn" value="返回"
+           onclick="backToMemberList()"/>
+</div>
+<div class="jy"></div>
+<!--描述：弹出div 编辑窗口 -->
+<div id="edit_div" class="edit_div draggable">
+    <div id="edit-title" class="wiki-title ask-title relative handle"><span>修改主治医生</span>
+        <a href="javascript:;" onclick="closeEditDiv(this)" class="close-btn"></a>
+    </div>
+    <div class="edit-div-li">
+        <label class="lable-l">医院:</label>
+        <select name="" id="Hospital" class="span-r">
+            <option value="all">请选择医院</option>
+        </select>
+    </div>
+    <div class="edit-div-li">
+        <label class="lable-l my-labelName"><!--医生:--></label>
+        <select name="" id="select" class="span-r">
+            <!--<option>请选择医生</option>-->
+        </select>
+    </div>
+    <div class="edit-div-li" style="text-align: center;">
+        <input id="changeBtn" type="button" class="btn btn-danger" value="确定" onclick="changeFun()"/>
+    </div>
+</div>
+<div id="edit_div_city" class="edit_div draggable" style="height: 120px">
+    <div class="wiki-title ask-title relative handle"><span>修改所在城市</span>
+        <a href="javascript:;" onclick="closeEditDiv(this)" class="close-btn"></a>
+    </div>
+    <div class="edit-div-li">
+        <label class="lable-l">城市:</label>
+        <select name="" id="EditCity" class="span-r">
+            <option value="all">请选择城市</option>
+        </select>
+    </div>
+    <div class="edit-div-li" style="text-align: center;">
+        <input type="button" class="btn btn-danger" value="确定" onclick="editCityBtn()"/>
+    </div>
+</div>
+
+<div id="edit_div_agent" class="edit_div draggable" style="height: 120px">
+    <div class="wiki-title ask-title relative handle"><span>修改专属客服</span>
+        <a href="javascript:;" onclick="closeEditDiv(this)" class="close-btn"></a>
+    </div>
+    <div class="edit-div-li">
+        <label class="lable-l">客服:</label>
+        <select name="" id="Agent" class="span-r">
+            <option value="all">请选择客服</option>
+        </select>
+    </div>
+    <div class="edit-div-li" style="text-align: center;">
+        <input type="button" class="btn btn-danger" value="确定" onclick="editAgentBtn()"/>
+    </div>
+</div>
+
+<div id="edit_div_phone" class="edit_div draggable" style="height: auto">
+    <div class="wiki-title ask-title relative handle"><span>修改电话号码</span>
+        <a href="javascript:;" onclick="closeEditDiv(this)" class="close-btn"></a>
+    </div>
+    <div class="edit-div-li p-list">
+        <div id="phone_list_input" class="phone_list_input">
+
+        </div>
+        <div class="p-add-div"><a href="javascript:addPhoneDiv();">增加+</a></div>
+    </div>
+
+    <div class="edit-div-li" style="text-align: center;margin-bottom: 10px">
+        <input type="button" class="btn btn-danger" value="确定" onclick="editPhoneBtn()"/>
+    </div>
+
+</div>
+<!--edit_div end-->
+<!--描述：弹出div 编辑疾病窗口 -->
+<div id="edit_div_disease" class="edit_div_disease draggable">
+    <div class="wiki-title ask-title relative handle"><span>修改诊断病情</span>
+        <a href="javascript:;" onclick="closeEditDiv(this)" class="close-btn"></a>
+    </div>
+    <div class="marginB10 border-div">
+        <div><span class="">临床诊断:</span></div>
+        <div class="relative">
+            <input type="text"  oninput="searchDisease()" placeholder="病种名称" class="my-input input-disease">
+            <div class="search_results disease-search" onmouseover="serchMouseOver()" onmouseout="serchMouseOut()">
+                <ul class="input_ul disease-search-input">
+                    <!--<li>十二指肠憩室</li>-->
+                    <li class="no-disease">没有找到该疾病<a class="btn btn-danger" href="#">添加并选中</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="margintop10"><span class="">已选:</span></div>
+        <ul class="disease-ul">
+            <!--<li class="btn btn-default" onclick="removeDisease(this)">慢性萎缩性胃炎伴中度肠化</li>-->
+        </ul>
+        <div class="text-right">
+            <small>PS:点击可取消</small>
+        </div>
+    </div>
+    <div class="edit-div-li" style="text-align: center;margin-bottom: 5px">
+        <input type="button" class="btn btn-danger" value="确定" onclick="DiseaseEdit()"/>
+    </div>
+</div>
+<script src="../../js/draggabilly.pkgd.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var $draggable = $('.draggable').draggabilly({
+            handle: '.handle'
+        });
+    });
+</script>
+</body>
+
+</html>

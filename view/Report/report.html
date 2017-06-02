@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>档案列表</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/layer/layer.js"></script>
+    <script src="../../js/av-mini-0.6.1.js"></script>
+    <script src="../../js/leancloud.js"></script>
+
+
+    <script src="js/report.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        caption {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 500;
+            color: #333333;
+        }
+
+        .li-div {
+            border: 1px #fff solid;
+            height: 300px;
+        }
+
+        .li-div:hover {
+            cursor: pointer;
+            border-color: #eee;
+        }
+
+        .li-img {
+            height: 90%;
+        }
+
+        .li-img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .li-title {
+            padding: 5px 0px;
+            text-align: center;
+            height: 10%;
+            overflow-x: hidden;
+        }
+        .list-main-div:after {
+            content: ' ';
+            display: block;
+            height: 0;
+            bottom: 0;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center;">档案管理</h1>
+<div id="listImg" class="list-main-div">
+    <!--<a class="li-div col-md-3" title="2016.12.5处方.jpg">
+        <div class="li-img"><img src="img/example.jpg"/></div>
+        <div class="li-title">2016.12.5处方.jpg</div>
+    </a>-->
+
+</div>
+<div class="page-div">
+    <div class="page float-rt">
+        <table class="page-table" border="0" cellspacing="" cellpadding="">
+            <tr>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+                </td>
+                <td>第<strong id="now"><!--1--></strong>页</td>
+                <td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+
+</html>

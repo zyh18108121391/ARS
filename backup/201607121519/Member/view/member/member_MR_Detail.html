@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>就诊记录详情</title>
+
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/ui-dialog.css">
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/dialog-plus-min.js"></script>
+		<script type="text/javascript" src="../../js/data/index.js"></script>
+		<script src="js/av-mini-0.6.1.js"></script>
+		<script src="js/leancloud.js"></script>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+
+		<!--头部公共 end-->
+		
+		<script src="js/member_MR_Detail.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/member.css"/>
+	</head>
+
+	<body>
+		<h2 class="sub-header" >就诊记录详情</h2>
+		<div class="table-responsive">
+			<table id="orderTable" class="table table-striped" style="margin-bottom: 10px;">
+				<tr>
+					<th>医生姓名</th>
+					<td id="DoctorName">13</td>
+					<th>就诊类型</th>
+					<td id="eventType">13</td>
+				</tr>
+				<tr>
+					<th>就诊时间</th>
+					<td id="MedicalTime"></td>
+					<th>就诊医院名</th>
+					<td id="Hospital"></td>
+				</tr>
+				<tr>
+					<th>医生诊断</th>
+					<td id="MedicalResult"></td>
+					<th>医生嘱咐</th>
+					<td id="MedicalAdvice"></td>
+				</tr> 
+				
+				<tr>
+					<th>状态</th>
+					<td id="Statu"></td>
+					<th></th>
+					<td ></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td></td>
+				</tr>
+			</table>
+
+		</div>
+		<div class="table-responsive" style="margin-top:0">
+			<div style="font-size: 20px;">相关档案</div>
+			<div class= "d-ul">
+				<ul id="d-list">
+					<!--<li>
+						<p class="d-img"><a href="#"><img src="../../images/young.jpg"/></a></p>
+						<p class="d-text"><a href="#">血常规</a></p>
+					</li>
+					<li>
+						<p class="d-img"><img src="../../images/young.jpg"/></p>
+						<p class="d-text">血常规</p>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+		<!--描述：弹出div 编辑窗口 -->
+		<div id="edit_div" class="edit_div">
+			
+			<div class="typeName relative" >
+				<div id="typeName"></div>
+				<!--名称-->
+				<div class="my_close"><a  href="javascript:close()" >关闭</a></div>
+			</div>
+			
+			<div class="content">
+				<div id="reportImg">
+					<!--图片-->
+				</div>
+			</div>
+		</div><!--edit_div end-->
+		
+	</body>
+
+</html>

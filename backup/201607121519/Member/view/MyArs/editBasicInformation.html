@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本资料编辑</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="https://cdn1.lncld.net/static/js/av-min-1.0.0.js"></script>
+    <script>
+        AV.init({
+            appId: 'to0nyg7vtky1bna4ybrclwrm3hm0r94oqw45eiost7mqrbi5',
+            appKey: 'kbq185r1thmzpbod54og7ml9vll7pzmb5yegd2jyyfcw3qaa'
+        });
+    </script>
+    <style>
+        .title{text-align: center;font-size: 22px;margin-bottom:10px}
+        .col-sm-3 {border-bottom: 1px solid #9d9d9d;text-align: center;padding:5px 0;margin-bottom: 20px}
+        .selected{border:1px solid #9d9d9d;border-bottom: 0}
+        .img-responsive{max-height: 120px;}
+        .people_img{text-align: right;width:120px}
+        .people_img img{width:120px;margin-bottom: 5px}
+
+        .changePhoneNum,.changePassword{color: #0c89ff;cursor:pointer}
+        #upFile,.select_hos,.change_pho_pass{display:none;z-index:2;position: fixed;width:100%;height:100%;background: rgba(50,50,50,0.5);top:0;left:0}
+        .inner{position:absolute;background: #FFFFFF;width:300px;height:100px;
+            left:50%;top:50%;margin:-100px 0 0 -150px;text-align: center;padding: 10px;
+        }
+        .select_d{position:absolute;left:25%;top:25%;width:50%;color:#FFFFFF;padding:15px;background:#337ab7}
+        .sure_add{margin-top: 5px}
+        .inner_d{position:absolute;left:25%;top:25%;width:50%;height:260px;color:#999999;
+            background: #FFFFFF}
+        .inner_d h2{background:#337ab7;color:#FFFFFF;margin: 0 0 80px 0;padding:8px;font-size: 20px}
+        .inner_d input{position:relative;width:70%;left:15%;}
+        .inner_d button{position:relative;width:100px;left:50%;top:50px;margin-left:-50px ; }
+        .f{border-bottom: #337ab7 solid 1px;padding-bottom:15px; }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="title">
+        基本资料编辑
+    </div>
+    <div class="row1">
+        <div class="col-sm-3 selected" data-id="basicInfo">基本资料</div>
+        <div class="col-sm-3" data-id="accountPassword">账号和密码</div>
+        <div class="col-sm-3" data-id="hospital">医院</div>
+        <div class="col-sm-3" data-id="ConsultingRooms">诊室</div>
+    </div>
+    <div id="basicInfo">
+        <div class="people_img"><img src="../../images/young.jpg" alt="NO"><button class="btn btn-primary">更换</button></div>
+        <div id="upFile">
+            <div class="inner">
+                <label for="exampleInputFile">选择图片</label>
+                <input type="file" id="exampleInputFile" accept="image/*">
+                <button class="btn btn-danger bd">确认更换</button>
+            </div>
+        </div>
+        <form class="form-horizontal ">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">姓名：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control d_name">
+                </div>
+            </div>
+        </form>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-danger">提交</button>
+            </div>
+        </div>
+    </div>
+    <div class="change_pho_pass">
+        <div class="inner_d">
+            <div class="phone" style="display: none">
+                <h2>修改手机号</h2>
+                <input type="text" class="form-control" placeholder="新手机号">
+                <button class="btn btn-danger">确认修改</button>
+            </div>
+            <div class="passN" style="display: none">
+                <h2>修改密码</h2>
+                <input type="number" class="form-control new_passW" placeholder="新密码">
+                <button class="btn btn-danger sure_password">确认修改</button>
+            </div>
+        </div>
+    </div>
+    <div id="accountPassword" style="display: none">
+        <div class="row">
+            <div class="col-md-2">手机</div><div class="col-md-2 phoneNum"></div><div class="col-md-8 changePhoneNum">修改</div>
+            <div class="col-md-2">账号密码</div><div class="col-md-2 passwordNum">************</div><div class="col-md-2 changePassword">修改密码</div>
+        </div>
+    </div>
+    <div id="hospital" style="display: none">
+
+    </div>
+    <div id="ConsultingRooms" style="display: none">
+        <div><button class="btn btn-danger add_but">添加</button></div>
+        <table id="member_list" class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>所属医院</th><th>诊室名字</th><th>诊室地址</th><th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="select_hos">
+        <div class="select_d">
+            <label>所属医院:</label>
+            <select class="form-control hosSelect">
+            </select>
+            <label>诊室名字:</label>
+            <input type="text" class="form-control roomI">
+            <label>诊室地址:</label>
+            <input type="text" class="form-control roomI">
+            <button class="btn btn-danger sure_add">确认添加</button>
+        </div>
+
+    </div>
+</div>
+<script src="js/editBasicInformation.js"></script>
+</body>
+</html>

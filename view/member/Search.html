@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/member.css" />
+
+		<link rel="stylesheet" type="text/css" href="css/Search.css" />
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+		<!--<script src="js/main.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="js/Search.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="shade" style="display: none;"></div>
+		<div class="s-head-div">
+			<div class="s-body relative">
+				<span class="icon-member iconMain"></span>
+				<input class="s-input" type="text" onmouseleave="hide()" onmouseover="show()" id="SearchMember" placeholder="姓名/电话" oninput="OnInput(event)" />
+				<div class="search_results" onmouseleave="hide()" onmouseover="show()">
+					<ul id="input_ul">
+						<!--<li><img src="../../backup/201607121519/Member/images/check.png"/>123</li>
+						<li>123</li>
+						<li>123</li>-->
+					</ul>
+				</div>
+				<span class="icon-check iconMain"></span>
+				<div class="s-checkbox-div">
+					<div class="form_lable check_box check-position">
+						<input type="checkbox" name="work" id="check-counsel" value="1" checked/>
+						<label for="check-counsel"></label>
+						<span class="check_span">咨询</span>
+					</div>
+					<div class="form_lable check_box check-position">
+						<input type="checkbox" name="work" id="check-complain" value="2" checked/>
+						<label for="check-complain"></label>
+						<span class="check_span">投诉</span>
+					</div>
+					<div class="form_lable check_box check-position">
+						<input type="checkbox" name="work" id="check-order" value="3" checked/>
+						<label for="check-order"></label>
+						<span class="check_span">预约</span>
+					</div>
+				</div>
+				<input type="button" class="subButton btn btn-primary s-btn" name="" id="search" onclick="SearchFun()" value="搜索" />
+			</div>
+			<div class="s-head-hide" onclick="showOrHidenMenu()">
+			</div>
+		</div>
+		<section class="s-content-before">
+			<div class="center">
+				<span class="before-icon"></span>
+				<span class="before-text">会员查询</span>
+			</div>
+		</section>
+		<section class="s-content" id="list" style="display: none;">
+			<div class="s-h-text">搜索 <strong id="keyword"></strong> 的结果如下：</div>
+			<div class="results-h-div relative">
+				<span>基本资料</span>
+			</div>
+			<div class="table-responsive">
+				<table id="orderTable" class="table table-striped">
+					<tr>
+						<th>姓名</th>
+						<td id="Name"></td>
+						<th>等级</th>
+						<td id="Leval"></td>
+						<th>加入时间</th>
+						<td id="JoinTime"></td>
+					</tr>
+					<tr>
+						<th>诊断病情</th>
+						<td id="Disease"></td>
+						<th> 所在城市</th>
+						<td id="City"></td>
+						<th>会员满意度</th>
+						<td id="Satisfaction"></td>
+					</tr>
+
+					<tr>
+						<th>活跃度</th>
+						<td id="Activeness"></td>
+						<th></th>
+						<td></td>
+						<th></th>
+						<td></td>
+					</tr>
+					<tr style="height: 0px;">
+						<th colspan="1" style="height: 0px;padding: 0px;" </th>
+							<td colspan="6" style="height: 0px;padding: 0px;"></td>
+					</tr>
+				</table>
+			</div>
+			<!--基本资料 end-->
+			<!--记录 -->
+			<div class="results-h-div relative">
+				<span>历史纪录</span>
+			</div>
+			<div class="relative check-h1" style="height: 34px;margin-bottom: 10px;">
+				<span class="addQueBtn btn CounselSpan">咨询记录</span>
+				<span class="addQueBtn btn complainSpan">投诉记录</span>
+				<span class="addQueBtn btn OrderSpan">预约记录</span>
+			</div>
+			<!--table-list-->
+			<!--咨询-->
+			<table id="Counsel-table" class="table-list table table-hover table-striped CounselSpan" style="display: none">
+				<thead>
+					<tr>
+						<th class="things">咨询医生</th>
+						<th class="things">负责客服</th>
+						<th class="things">事项</th>
+						<th>咨询内容</th>
+						<th>最新补充内容</th>
+						<th class="answer_time">回答时效(H)</th>
+						<th>咨询建立时间</th>
+						<th>最新回复时间</th>
+						<!--<th>操作</th>-->
+					</tr>
+				</thead>
+				<tbody id="Counsel-table-body">
+				</tbody>
+			</table>
+			<!--投诉-->
+			<table id="complain-table" class="table-list table table-hover table-striped complainSpan" style="display: none">
+				<thead>
+					<tr>
+						<th>会员级别</th>
+						<th>投诉级别</th>
+						<th>投诉对象类型</th>
+						<th>投诉对象</th>
+						<th>投诉内容</th>
+						<th>部门处理结果</th>
+						<th>客服处理结果</th>
+						<th>客服回访结果</th>
+						<th>投诉时间</th>
+						<th>回访时间</th>
+						<th>状态</th>
+						<!--<th>操作</th>-->
+					</tr>
+				</thead>
+				<tbody id="complain-table-body">
+				</tbody>
+			</table>
+			<!--预约-->
+			<table id="order-table" class="table-list table table-hover table-striped OrderSpan" style="display: none">
+				<thead>
+					<tr>
+						<tr>
+							<th>事项</th>
+							<th>医院名称</th>
+							<th>诊室名称</th>
+							<th>诊断结果</th>
+							<th>状态</th>
+							<th>会员评分</th>
+							<th>预约时间</th>
+							<th>确认预约时间</th>
+							<!--<th>操作</th>-->
+						</tr>
+					</tr>
+				</thead>
+				<tbody id="order-table-body">
+				</tbody>
+			</table>
+			<div class="page-div">
+			<div class="page float-rt">
+				<table class="page-table" border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+						</td>
+						<td>第<strong id="now"><!--1--></strong>页</td>
+						<td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		</section>
+		<script src="js/Search.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

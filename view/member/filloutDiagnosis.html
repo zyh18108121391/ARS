@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>填写诊断结果</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/DateTimePicker.css">
+    <link rel="stylesheet" href="css/filloutDiagnosis.css">
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/layer/layer.js"></script>
+    <script src="../../js/DateTimePicker.js"></script>
+    <script src="../../js/av-mini-0.6.1.js"></script>
+    <script src="../../js/leancloud.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/filloutDiagnosis.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#dtBox").DateTimePicker({
+                dateFormat: "yyyy-mmm-dd"
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="title">
+        <!--填写诊断结果-->
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">会员姓名：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="memberName" placeholder="会员姓名" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">医生姓名：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="doctorName" placeholder="请输入医生姓名">
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">就诊类型：</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="eventType">
+                    <option value="all">请选择就诊类型</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">就诊医院：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i"  id="hospital">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="time" class="col-sm-2 control-label">就诊时间：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="time" data-field="datetime" placeholder="点击选择时间">
+                <div id="dtBox"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">主诉：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="ChiefComplaint" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">现病史：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="HPC" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">医生诊断：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="MedicalResult" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">医生嘱咐：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control i" id="MedicalAdvice" placeholder="">
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <button class="btn btn-primary add_img" onclick="showUpFile()">添加图片</button>
+    </div>
+    <div class="part_but">
+        <button class="btn btn-danger sure my-back" onclick="back()">返回</button>
+        <button id="savebtn" class="subButton btn btn-danger sure" >提交</button>
+        <button id="editbtn" class="subButton btn btn-danger save" >保存</button>
+    </div>
+    <div id="upFile">
+        <div class="inner">
+            <label for="exampleInputFile">选择图片</label>
+            <input id="exampleInputFile" name="images"  type="file"  size="30" multiple />
+            <button class="btn btn-danger sure_up_img">上 传</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

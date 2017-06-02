@@ -1,0 +1,8 @@
+caption{
+    text-align: center;
+    font-size: 30px;font-weight: 500;
+    color:#333333;
+}
+.search-select select{
+    margin-right: 15px;
+}

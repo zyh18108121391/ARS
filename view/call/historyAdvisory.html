@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>历史咨询</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+		<link rel="stylesheet" href="../../css/ui-dialog.css">
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<!--头部公共 end-->
+		<script src="../../js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/AV.push.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../member/js/CToPY.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/history.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/MyPushAndCallPublic.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/answer.css" />
+
+		<style>
+			body {
+				padding: 8px;
+			}
+			
+			h1 {
+				height: 30px;
+				margin-top: 0px;
+			}
+			
+			.member,
+			.things,
+			.handle {
+				min-width: 80px
+			}
+			
+			.answer_time {
+				min-width: 150px
+			}
+			
+			.addQueBtn1 {
+				position: absolute;
+				left: 0px;
+				border: 1px #ddd solid;
+				border-radius: 0px;
+				bottom: -1px;
+				color: #aaa;
+			}
+			
+			.addQueBtn1:hover,
+			.addQueBtn2:hover {
+				color: #0C89FF !important;
+			}
+			
+			.check-active {
+				color: #333 !important;
+				border-bottom-color: #fff !important;
+			}
+			
+			.check-active:hover {
+				cursor: hide;
+			}
+			
+			.active1 {
+				border-left-color: #fff !important;
+				border-top-color: #fff !important;
+			}
+			
+			.active2 {
+				border-right-color: #fff !important;
+				border-top-color: #fff !important;
+			}
+			
+			.addQueBtn2 {
+				position: absolute;
+				border: 1px #ddd solid;
+				border-left: 0px;
+				;
+				left: 82px;
+				border-radius: 0px;
+				bottom: -1px;
+				color: #aaa;
+			}
+			
+			table img {
+				width: 40px;
+				height: 30px;
+			}
+			
+			.check-h1 {
+				border-bottom: 1px #ddd solid;
+			}
+			
+			.list-btn {
+				width: 80px;
+				margin-left: 5px;
+				padding: 2px 5px;
+			}
+			
+			#table-body a {
+				line-height: 25px;
+			}
+			
+			.btn-hang-up {
+				border-color: #f5a13a;
+				background-color: #f5a13a;
+			}
+			
+			.btn-hang-up:hover {
+				border-color: #d87904;
+				background-color: #d87904;
+			}
+			.search-div-position{
+				height: 30px;
+				font-size: 25px;
+				width: 500px;
+				position: absolute;
+				left: 200px;
+				bottom: -5px;
+			}
+			.counsel_search_input{
+				position: absolute;
+				top:-8px;
+				left: 200px;
+				line-height: 30px;
+				width: 100px;
+			}
+			.counsel_search_input input{
+				line-height: 30px;
+				width: 150px;
+			}
+			.search-b{
+				position: absolute;
+				left:360px;
+				top:-8px;
+			}
+			.check-position{
+				display: block;
+				width: 120px;
+				position: absolute;
+				right: 0px;
+				bottom: -1px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="text-align: center;height: 30px;margin-bottom: 10px;margin-top: 5px;" class="relative check-h1">
+		<span class="addQueBtn1 btn check-active" onclick="CounselClick('agent')">客服参与</span>
+		<span class="addQueBtn2 btn active2" onclick="CounselClick('history')">自主咨询</span>
+		<div class="counsel_search_input" >
+            <input type="text" id="DoctorName" search_type="agent" placeholder="咨询医生姓名" list="DoctorList">
+            <datalist id="DoctorList"></datalist>
+            <ul class="doctor_list_by_py"></ul>
+        </div>
+		<input id="searchBtn" type="button" class="btn btn-primary search-b" onclick="searchFunc()" value="查询"/>
+		<div class="form_lable check_box check-position">
+			<input type="checkbox" name="check" id="check" value="1" /> 
+			<label  for="check"></label>
+			<span class="check_span">我参与的</span>
+		</div>
+		</div>
+		<div  style="width: 100%;overflow-x: scroll;">
+		<table id="askj-list-service" class="table table-hover table-striped" style="width: 1200px;">
+			<thead>
+				<tr>
+					<tr>
+						<th class="things">对象</th>
+						<th class="things">负责客服</th>
+						<th class="things">事项</th>
+						<th>咨询内容</th>
+						<th>最新补充内容</th>
+						<th class="answer_time">回答时效(H)</th>
+						<th>咨询建立时间</th>
+						<th>最新回复时间</th>
+						<th class="handle">操作</th>
+					</tr>
+				</tr>
+			</thead>
+			<tbody id="table-body-service">
+
+			</tbody>
+		</table>
+		<table id="askj-list-history" class="table table-hover table-striped" style="display: none;">
+			<thead>
+				<tr>
+					<th class="things">对象</th>
+					<th class="things">事项</th>
+					<th>咨询内容</th>
+					<th>最新补充内容</th>
+					<th class="answer_time">回答时效(H)</th>
+					<th>咨询建立时间</th>
+					<th>最新回复时间</th>
+					<th class="handle">操作</th>
+				</tr>
+			</thead>
+			<tbody id="table-body-history">
+
+			</tbody>
+		</table>
+		</div>
+		<div class="page-div">
+			<div class="page float-rt">
+				<table class="page-table" border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+						</td>
+						<td>第<strong id="now"><!--1--></strong>页</td>
+						<td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

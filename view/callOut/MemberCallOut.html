@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>会员外呼</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/main.css">
+
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+		
+		<!--push model-->
+		<script src="../../js/AV.push.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/MyPushAndCallPublic.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/DateTimePicker.css"/>
+		<script src="../../js/DateTimePicker.js"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/MemberCallOut.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#dtBox").DateTimePicker({
+					dateFormat: "yyyy-mm-dd"
+				});
+			});
+		</script>
+		<style type="text/css">
+			body {
+				padding-top: 10px;
+				padding-bottom: 30px;
+			}
+			
+			select {
+				padding-left: 5px;
+			}
+			
+			.tit {
+				font-weight: 700
+			}
+			
+			.up_photos div {
+				margin: 8px 0;
+			}
+			
+			.input_img {
+				position: relative;
+				height: 30px
+			}
+			
+			.input_img label {
+				position: absolute;
+				min-width: 200px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				padding: 1px 4px;
+				background-color: #0C89FF;
+				color: #FFFFFF;
+				border-radius: 2px;
+			}
+			
+			.Image {
+				position: absolute;
+				width: 200px;
+				opacity: 0;
+			}
+			
+			.img_container img {
+				margin: 0 5px 5px 0;
+			}
+			
+			#showTime {
+				display: none;
+				position: fixed;
+				z-index: 2;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.2);
+			}
+			
+			.times_inner {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -120px 0 0 -250px;
+				width: 500px;
+				height: 240px;
+				background-color: #FFFFFF;
+			}
+			
+			.times_inner h5 {
+				margin: 30px 0 0 0;
+				text-align: center;
+				font-size: 13px;
+				color: #2980B9;
+			}
+			
+			.times_a {
+				position: absolute;
+				right: 15px;
+				cursor: pointer;
+				color: #FF3B30;
+			}
+			
+			.times_inner button {
+				width: 300px;
+				height: 40px;
+				margin-left: 100px;
+				text-align: center;
+				border: 0;
+				font-size: 16px;
+				background-color: #FF3B30;
+				color: #FFFFFF;
+			}
+			
+			.times_inner button:nth-of-type(1) {
+				margin: 40px 0 30px 100px
+			}
+			
+			.other_time {
+				display: none
+			}
+			
+			#canOrderTime {
+				height: 35px;
+				width: 170px;
+			}
+			
+			.select_o_t {
+				border-radius: 4px;
+				padding: 5px 9px;
+				color: #fff;
+				text-align: center;
+				font-size: 13px;
+				cursor: pointer;
+				display: inline-block;
+				background-color: #0C89FF;
+			}
+			
+			.no_select_o_t {
+				border-radius: 4px;
+				padding: 5px 9px;
+				color: #fff;
+				text-align: center;
+				font-size: 13px;
+				cursor: pointer;
+				display: inline-block;
+				background-color: #c1c1c1;
+			}
+			.cancelBtn{
+				margin-left: 5px;
+			}
+			.record-table td{
+				max-width: 200px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="audio-div">
+		<span class="close-btn1" onclick="closeBtn()"></span>
+		<span class="audio-arrow"></span>
+		<audio id="audio" controls="controls" src="">
+			<y>浏览器不支持在线播放</y>
+		</audio>
+	</div>
+		<section id="call" class="call-div" style="display: block;">
+		<div class="btn-list">
+			<input type="button" class="btn btn-primary" name="" id="" value="新建投诉工单" data="" onclick="openNewComplainDiv()" />
+			<input type="button" class="btn btn-primary" name="" id="" value="历史诊断报告" onclick="openMedicalResultDiv()" />
+			<input type="button" class="btn btn-primary" name="" id="" value="新建咨询" onclick="newAsk()" />
+			<input type="button" class="btn btn-primary" name="" id="" value="历史咨询"  onclick="openHistory()"/>
+			<input type="button" class="btn btn-danger" name="" id="" value="关闭" onclick="closeWindow()"/>
+			<input type="button" class="btn btn-danger" name="" id="" value="关闭并就绪" onclick="closeWindowAndSave()"/>
+			<a class="search-btn" href="javascript:openWiki()"></a>
+		</div>
+		<div class="header">当前热线信息</div>
+		<div class="table-responsive">
+			<table id="tale-have" class="table table-striped my-table" style="margin-bottom: 10px;">
+				<tr>
+					<th>队列名称</th>
+					<td id="QueueName" data=""></td>
+					<th>振铃时间</th>
+					<td id="AlertingTime" class="calling-span"></td>
+				</tr>
+				<tr>
+					<th>是否排队</th>
+					<td id="IsQueue"></td>
+					<th>通话备注</th>
+					<td >
+						<textarea id="Memo" name="" style="width: 100%;" placeholder="通话备注"></textarea>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="header">来电客户基本信息</div>
+		<div class="table-responsive">
+			<table id="tale-have" class="table table-striped my-call-table" style="margin-bottom: 10px;">
+				<tr>
+					<th>姓名</th>
+					<td id="Name"></td>
+					<th>电话</th>
+					<td><strong id="tellNo"></strong></td>
+					<th>等级</th>
+					<td id="Leval"></td>
+					
+				</tr>
+				<tr>
+					<th>加入时间</th>
+					<td id="JoinTime"></td>
+					<th>诊断病情</th>
+					<td id="Disease"></td>
+					<th>所在城市</th>
+					<td id="City"></td>
+					
+				</tr>
+				<tr>
+					<th>会员满意度</th>
+					<td id="Satisfaction"></td>
+					<th>活跃度</th>
+					<td id="Activeness"></td>
+					<th></th>
+					<td></td>
+					<th></th>
+					<td></td>
+				</tr>
+				<tr style="height: 0px;">
+					<th style="height: 0px;padding: 0px;" </th>
+					<td colspan="5" style="height: 0px;padding: 0px;"></td>
+				</tr>
+			</table>
+			<!--非会员编辑区-->
+			<table id="tale-no" class="table table-striped" style="margin-bottom: 10px;display: none">
+				<tr>
+					<th>姓名</th>
+					<td id="Name">13</td>
+					<th>所在城市</th>
+					<td id="City">成都</td>
+				</tr>
+				<tr>
+					<th colspan="1">诊断病情</th>
+					<td colspan="3" id="Disease">123</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<!--新建预约-->
+		<div class="header member-div">新建预约 <input type="button" class="btn btn-danger" style="margin-bottom:3px ;" id="subButton" onclick="NewEvent()" value="确定预约" /></div>
+		<div class="table-responsive member-div">
+			<table id="orderTable" class="table table-striped my-table">
+				<tr>
+					 <th class="tit">医生:</th>
+                	<td>
+                    <span id="DoctorName">无</span>
+                    <span class="selectMember" onclick="selectDoctor()">点击选择医生</span>
+                </td>
+					<th class="tit">事项:</th>
+					<td >
+						<select name="EventType" style="width: 170px;padding-left:5PX ;" id="EventType"></select>
+					</td>
+				</tr>
+				<tr>
+					<th class="tit">可预约时间:</th>
+					<td>
+						<select id="canOrderTime">
+						</select>
+					</td>
+					<th class="tit">其它时间:</th>
+					<td class="span_select">
+						<span class="no_select_o_t">点击选择其它时间</span>
+					</td>
+				</tr>
+				<tr class="other_time">
+					<th class="tit">预约日期:</th>
+					<td>
+						<input type="text" id="time" data-field="date" style="width:170px;" readonly>
+					</td>
+					<th class="tit">预约时间:</th>
+					<td>
+						<input type="text" id="times" style="width: 170;" readonly>
+					</td>
+					<div id="dtBox"></div>
+					<div id="showTime"></div>
+				</tr>
+				<tr class="other_time">
+					<th class="tit">医院:</th>
+					<td id="Disease">
+						<select name="Hospital" style="width: 170px;" id="Hospital">
+						</select>
+					</td>
+					<th class="tit">诊室:</th>
+					<td id="City">
+						<select name="ConsultingRoom" style="width: 170px;" id="ConsultingRoom">
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th class="tit">注意事项:</th>
+					<td>
+						<textarea id="notice" name="" rows="" cols="" style="width: 300px;"></textarea>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+			<div>
+			</div>
+		</div>
+		<!--新建预约结束-->
+		<div class="header">近期日程</div>
+		<table id="calender_list" class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>事项</th>
+					<th>确认预约时间</th>
+					<th>医院名称</th>
+					<th>诊室名称</th>
+					<th>诊断结果</th>
+					<th>状态</th>
+					<th>会员评分</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="tbody-list">
+				<tr><td class="null-td" colspan="8">暂无记录</td></tr>
+			</tbody>
+		</table><!--近期日程结束-->
+		<div class="header">通话记录<small style="font-size: 14px;color: #aaa;">(最近五条)</small></div>
+		<table class="table table-hover record-table table-striped">
+			<thead>
+				<tr>
+					<th>对象(坐席)</th>
+					<th>通话时长</th>
+					<th>录音文件</th>
+					<th>备注</th>
+					<th>客户评分</th>
+					<th>通话日期</th>
+				</tr>
+			</thead>
+			<tbody id="CallRecordList">
+				<tr><td class="null-td" colspan="5">暂无记录</td></tr>
+			</tbody>
+		</table><!--通话记录结束-->
+		
+		<div class="btn-list">
+			<input type="button" class="btn btn-primary" name="" id="" value="新建投诉工单" data="" onclick="openNewComplainDiv()" />
+			<input type="button" class="btn btn-primary" name="" id="" value="历史诊断报告" onclick="openMedicalResultDiv()" />
+			<input type="button" class="btn btn-primary" name="" id="" value="新建咨询" onclick="newAsk()" />
+			<input type="button" class="btn btn-primary" name="" id="" value="历史咨询"  onclick="openHistory()"/>
+			<input type="button" class="btn btn-danger" name="" id="" value="关闭" onclick="closeWindow()"/>
+			<input type="button" class="btn btn-danger" name="" id="" value="关闭并就绪" onclick="closeWindowAndSave()"/>
+			<a class="search-btn" href="javascript:openWiki()"></a>
+		</div>
+		</section>
+	<section id="list" class="doctor-div" style="display: none;">
+    <table id="doctor_list" class="table table-hover table-striped">
+        <caption style="text-align: center;font-size: 22px">
+            选择医生
+        </caption>
+        <thead>
+        <tr>
+        	<th>选择</th>
+            <th>头像</th>
+            <th>姓名</th>
+            <th>医院</th>
+            <th>诊室</th>
+        </tr>
+        </thead>
+        <tbody id="table-doctor">
+    
+        </tbody>
+
+    </table>
+    <div>
+        <input type="button" class="btn btn-danger" name="" onclick="SelectBtn()" value="确定"/>
+        <input type="button" class="btn btn-danger" name="" onclick="SelectBack()" value="取消"/>
+    </div>
+</section>
+		<!--content end-->
+		<div class="newAsk">
+			<div class="wiki-title ask-title relative">新建咨询
+				<a href="javascript:closeAsk()" class="close-btn"></a>
+			</div>
+			<div class="relative ask-div">
+				<label class="lable-l">咨询对象:</label>
+				<span id="ask-doctor" class="span-r" data="">王医生</span>
+			</div>
+			<div class="relative ask-div">
+				<label class="lable-l">咨询事项:</label>
+				<span class="span-r">
+					<select id="CounselType" name="" class="ask-select">
+					</select>
+				</span>
+			</div>
+			<div class="relative ask-div" style="height: 120px;">
+				<label class="lable-l">咨询内容:</label>
+				<span class="span-r">
+					<textarea id="ask-content" name="" rows="" cols="" class="ask-textarea" placeholder="咨询内容"></textarea>
+				</span>
+			</div>
+			<div class="ask-div" style="text-align: center;">
+				<input type="button"  class="btn btn-danger"  value="确定" onclick="newAskBtn()"/>
+			</div>
+		</div>
+		<div class="jy"></div>
+		<div class="wiki-div">
+			<div class="wiki-title relative">知识库搜索
+				<a href="javascript:closeWiki()" class="close-btn"></a>
+			</div>
+			<iframe src="http://wiki.arshmc.cn:3000/" width="100%" height="100%"></iframe>
+		</div>
+		<div class="newComplain-div">
+			<div class="wiki-title relative" style="background-color:#d9534f;">新建投诉
+				<a href="javascript:closeNewComplainDiv()" class="close-btn"></a>
+			</div>
+			<iframe id="newComplainIframe" src="" width="100%" height="100%"></iframe>
+		</div>
+		<div class="MedicalResult-div">
+			<div class="wiki-title relative" style="background-color:#d9534f;">历史诊断报告
+				<a href="javascript:closeMedicalResultDiv()" class="close-btn"></a>
+			</div>
+			<iframe id="MedicalResultIframe" src="" width="100%" height="100%"></iframe>
+		</div>
+		<div class="historyAsk-div">
+			<div class="wiki-title relative" style="background-color:#d9534f;">历史咨询
+				<a href="javascript:closehistory()" class="close-btn"></a>
+			</div>
+			<iframe id="historyIframe" src="" width="100%" height="100%"></iframe>
+		</div>
+		<div class="refuse-div">
+			<div class="wiki-title relative" style="background-color:#d9534f;">
+				<span class="title">重新协调</span>
+				<a href="javascript:closeRefuse()" class="close-btn"></a>
+			</div>
+			<div>
+				<table id="calender_list" class="table refuse-table table-hover table-striped">
+					<tr class="refuse-check">
+						<th id="refuse-name" style="line-height: 34px;">协调日期</th>
+						<td>
+							<select id="canOrderTime2" style="width: 100%;line-height: 32px;">
+							</select>
+						</td>
+					</tr>
+				</table>
+				<div style="text-align: center;"><input type="button" class="btn btn-primary" id="refuse-btn" value="确定" /></div>
+				
+			</div>
+		</div>
+	</body>
+
+</html>

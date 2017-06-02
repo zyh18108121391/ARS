@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/ui-dialog.css">
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/dialog-plus-min.js"></script>
+    <script type="text/javascript" src="../../js/data/index.js"></script>
+    <link href="../../css/kalendar.css" rel="stylesheet">
+    <script src="../../js/kalendar.js"></script>
+    <style>
+        select{
+            border: 0;
+            width: 70px;
+        }
+        dl{
+
+            border-bottom: 1px solid #f3f3f3;
+        }
+        dt{
+            line-height: 3em;
+        }
+        .schedule{
+            width: 40%;
+            float: left;
+            margin: 0% 5%;
+            border-radius: 5px;
+            border: 1px solid #f7f7f7;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <div style="width: 90%;margin: 0 auto"><div id='wrap'></div></div>
+    <div class="schedule">
+    <h4 style="text-align: center;background: #f7f7f7;line-height: 2em;">所有日程</h4>
+    <dl class="dl-horizontal table-line">
+        <dt>到院复诊</dt>
+        <dd>
+            <p>患者：<a href="javascript:iframeTarget('view/member/schedules_detail.html');">王小二</a></p>
+            <p>日期：20160-06-02</p>
+        </dd>
+        <div style="text-align: center"><a href="javascript:showbox()">待编写结论</a></div>
+    </dl>
+        <dl class="dl-horizontal table-line">
+            <dt>专家门诊</dt>
+            <dd>
+                <p>患者：<a href="javascript:iframeTarget('view/member/schedules_detail.html');">王小二</a></p>
+                <p>日期：20160-06-01</p>
+            </dd>
+            <div style="text-align: center"><a href="javascript:iframeTarget('view/member/schedules_detail.html');">已完成</a></div>
+        </dl>
+    </div>
+    <div class="schedule">
+        <h4 style="text-align: center;background: #f7f7f7;line-height: 2em">今日日程</h4>
+        <dl class="dl-horizontal table-line">
+            <dt>到院复诊</dt>
+            <dd>
+                <p>患者：<a href="javascript:iframeTarget('view/member/schedules_detail.html');">王小二</a></p>
+                <p>日期：20160-06-02</p>
+            </dd>
+            <div style="text-align: center"><a href="javascript:showbox()">待编写结论</a></div>
+        </dl>
+    </div>
+    <div class="clearfix"></div>
+
+</section>
+<script>
+    function showbox() {
+        var d = dialog({
+            title: '日程完成结论编辑',
+            content: '<form class="form-horizontal" onsubmit="return ajax()" style="max-height: 600px;">\
+                <div class="form-group">\
+                <label class="col-sm-6">事件类型：</label>\
+                <label class="col-sm-6">出院</label>\
+                </div>\
+                <div class="form-group">\
+                <label class="col-sm-6">日期：</label>\
+                <label class="col-sm-6">2016-06-02 9:00</label>\
+                </div>\
+                <div class="form-group">\
+                <label class="col-sm-6">会员姓名：</label>\
+                <label class="col-sm-6">王小二</label>\
+                </div>\
+                <div class="form-group">\
+                <label for="name1" class="col-sm-12">主诉</label>\
+                <div class="col-sm-12">\
+                        <input type="text" class="form-control" required="required">\
+                        </div>\
+                </div>\
+                <div class="form-group">\
+                        <label for="" class="col-sm-12">诊断</label>\
+                <div class="col-sm-12">\
+                        <input type="text" class="form-control">\
+                        </div>\
+                </div>\
+                <div class="form-group">\
+                        <label for="" class="col-sm-12">建议</label>\
+                <div class="col-sm-12">\
+                        <input type="text" class="form-control" >\
+                        </div>\
+                </div>\
+                <div class="form-group">\
+                        <label for="" class="col-sm-12">档案上传</label>\
+                <div class="col-sm-12">\
+                        <input type="file" class="form-control"  required="required">\
+                        </div>\
+                </div>\
+                <div class="form-group">\
+                        <div class="col-sm-offset-2 col-sm-10">\
+                        <button type="submit" onclick="" class="btn btn-success">保存</button>\
+                <button type="button" onclick="javascript:location.reload();" class="btn btn-danger">取消</button>\
+                </div>\
+                </div>\
+            </form>'
+        });
+        d.showModal();
+    }
+    function ajax(){
+        return false;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ARS后台管理系统 </title>
+    <meta charset="utf-8"/>
+    <link href="css/index-znd.css" rel="styleSheet" type="text/css">
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+
+    <!--push model-->
+    <script src="js/AV.push.js" type="text/javascript" charset="utf-8"></script>
+    <!--push model-->
+</head>
+<body>
+
+<script>
+    /***************push********************/
+    /*
+     * push 初始化
+     */
+    // 请换成自己的 appId 和 appKey
+    var appId = 'to0nyg7vtky1bna4ybrclwrm3hm0r94oqw45eiost7mqrbi5';
+    var appKey = 'kbq185r1thmzpbod54og7ml9vll7pzmb5yegd2jyyfcw3qaa';
+    var push;
+    createNew();
+    function createNew() {
+        push = AV.push({
+            appId: appId,
+            appKey: appKey
+        });
+        // 发送一条推送，如果不传 channels 则是给所有 channel 发送消息
+        push.send({
+            channels: ['2'],
+            //data: {eventType: 'she'}
+            data: {eventType: 'coun'}
+        }, function(result) {
+            if (result) {
+                console.log('推送成功发送');
+            } else {
+                console.log('error');
+            }
+        });
+
+        // 监听网络异常
+        push.on('reuse', function() {
+            console.log('网络中断重新连接---');
+        });
+    }
+</script>
+</body>
+</html>

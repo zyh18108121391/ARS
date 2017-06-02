@@ -1,0 +1,60 @@
+caption {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.input-imgName {
+    text-align: center;
+    padding: 5px;
+}
+
+.re-type {
+    margin-bottom: 10px;
+}
+
+.re-contant {
+    padding: 10px;
+    border: 2px #aaa solid;
+}
+
+.search-input {
+    margin-left: 15px;
+}
+
+.marginB10 {
+    padding: 3px;
+    margin-bottom: 8px;
+}
+
+.jqzoom{
+    text-align: center;
+}
+.jqzoom img{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.my-p-name{
+    height: 100%;
+    line-height: 25px;
+    font-weight: 700;
+}
+.my-p{
+    line-height: 25px;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+}
+.my-p pre{
+    background-color: #fff;
+}
+.my-div div{
+    margin: 5px 0px;
+}
+.clearPadding{
+    padding-left:0 ;
+    padding-right:0 ;
+}

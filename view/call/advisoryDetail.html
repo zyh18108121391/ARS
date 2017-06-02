@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>咨询详情</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/AV.push.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!--头部公共 end-->
+
+		<link rel="stylesheet" type="text/css" href="css/answer.css" />
+		<style>
+			.container {}
+			
+			.title {
+				text-align: center;
+				font-size: 22px;
+				margin-bottom: 10px
+			}
+			
+			.s_member {
+				padding: 10px 0;
+				border-bottom: solid #337ab7 1px;
+			}
+			
+			.img-responsive {
+				max-height: 120px
+			}
+			
+			.member_info div {
+				margin: 5px 0;
+			}
+			
+			.member_info~ div {
+				margin: 5px 0;
+			}
+			
+			form {
+				padding: 10px 0;
+			}
+			
+			.reply_text {
+				margin: 10px 0;
+			}
+			
+			.pre {
+				padding: 9px;
+				background-color: #f5f5f5;
+				border: solid #cccccc 1px;
+				border-radius: 3px;
+			}
+			
+			.head-div {
+				float: left;
+				width: 90px;
+			}
+			
+			.info-div {
+				float: left;
+				margin-left: 20px;
+				width: 70%;
+			}
+			
+			.check-h1 {
+				border-bottom: 1px #ddd solid;
+			}
+			
+			.list-btn {
+				width: 80px;
+				margin-left: 5px;
+				padding: 5px 5px;
+			}
+			
+			#table-body a {
+				line-height: 25px;
+			}
+			
+			.btn-hang-up {
+				border-color: #f5a13a;
+				background-color: #f5a13a;
+			}
+			
+			.btn-hang-up:hover {
+				border-color: #d87904;
+				background-color: #d87904;
+			}
+			
+			.btn-position {
+				position: absolute;
+				right: 5px;
+			}
+			.content-null{
+				text-align: center;
+				line-height: 30px;
+				color: #aaa;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container relative" style="width: 100%; padding: 0px 50px;">
+			<div class="title relative" style="margin-left: -15px;margin-right: -15px;">
+				咨询详情
+				<span id="call" class="btn-position btn btn-primary list-btn" date-type="call" name="" onclick="call(this)">电话催促</span>
+			</div>
+			<div class="row s_member">
+				<div id="head" class="head-div head-img" style="padding: 5px;">
+					<!--<img src="../../backup/201607121519/Member/images/doctor.jpg"/>--></div>
+				<div class="info-div">
+					<div class="row member_info">
+						<div class="col-md-3"><span id="name"></span><span id="level"></span></div>
+					</div>
+					<div id="time" style="font-size:14px ;color: #9a9a9a;">2016-1-11 12:20:34</div>
+					<div><strong id="content"></strong></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!--<div class="row" id="replay_div" style="display: none;">
+        <textarea id="replay" class="form-control reply_text" rows="3"></textarea>
+        <button type="button" class="btn btn-primary " style="float: right" onclick="replay()">回复</button>
+    </div>-->
+			<div id="thread">
+				<!--<div class="content-null">医生暂未回复</div>-->
+				<!--<div class="ticket-thread">
+            <div class="thread-status">
+                <div class="head"><img src="../../backup/201607121519/Member/images/doctor.jpg"/></div>
+                <div class="head-name">
+                    <div><strong class="ticket-username">匿名用户</strong></div>
+                    <div><span class="time">@ 2016/5/21 00:20:52</span></div>
+                </div>
+                <div class="del-btn"><a href="">删除</a></div>
+                <div class="clear"></div>
+            </div>
+            <div class="thread-contant">
+                <pre>可以吗？</pre>
+            </div>-->
+			</div>
+			<div class="relative" style="margin-left: -15px;margin-right: -15px;">
+				<span class="back-span" style="margin-bottom: 20px;margin-top: 10px;"><input type="button" class="btn btn-danger" name="" id="" value="返回" onclick="back()"/></span>
+			</div>
+		</div>
+		<script src="js/answerDetail.js"></script>
+	</body>
+
+</html>

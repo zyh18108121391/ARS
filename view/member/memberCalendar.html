@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>会员日程列表</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+		<link rel="stylesheet" type="text/css" href="../call/css/call.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script type="text/javascript" src="../../js/dialog-plus-min.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+		
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<!--头部公共 end-->
+		<link rel="stylesheet" href="../../css/DateTimePicker.css" />
+		<script src="../../js/DateTimePicker.js"></script>
+		<script src="js/memberCalendar.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#dtBox").DateTimePicker({
+					dateFormat: "yyyy-mm-dd"
+				});
+			});
+		</script>
+		<style>
+			th,
+			td {
+				text-align: center
+			}
+			
+			button {
+				margin: 3px;
+				font-size: 12px!important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<table id="member_list" class="table table-hover table-striped">
+			<caption style="text-align: center;font-size: 22px">
+				日程列表
+			</caption>
+			<thead>
+				<tr>
+					<td colspan="8" style="text-align:left;">诊疗项目：
+						<select id="eventTypes" name="" style="height: 35px;width: 80px;padding: 0px 5px;">
+							<!--<option value="">所有事件</option>
+							<option value="0">呼入</option>
+							<option value="1">呼出</option>-->
+						</select>
+						&nbsp;&nbsp;&nbsp;&nbsp; 报告日期：
+						<input id="timeStart" type="text" class="search-input" style="width: 100px;" name="" data-field="date" placeholder="开始时间" readonly/>
+						<input id="timeEnd" type="text" class="search-input" style="width: 100px;" name="" data-field="date" placeholder="结束时间" readonly/>
+						<div id="dtBox"></div>
+						<input type="button" class="btn btn-danger" name="" id="" value="确定" onclick="Search()"/>
+					</td>
+				</tr>
+				<tr>
+					<th>事项</th>
+					<th>确认预约时间</th>
+					<th>医院名称</th>
+					<th>诊室名称</th>
+					<th>诊断结果</th>
+					<th>状态</th>
+					<th>会员评分</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="calendar">
+				<tr><td class="null-td" colspan="8">暂无记录</td></tr>
+			</tbody>
+		</table>
+		<div class="jy" style="z-index: 998"></div>
+		<div class="refuse-div" style="z-index:999;">
+			<div class="wiki-title relative" style="background-color:#d9534f;">
+				<span class="title"></span>
+				<a href="javascript:closeRefuse()" class="close-btn"></a>
+			</div>
+			<div>
+				<table id="calender_list" class="table refuse-table table-hover table-striped">
+					<tr class="refuse-check">
+						<th id="refuse-name" style="line-height: 34px;">协调日期</th>
+						<td>
+							<select id="canOrderTime" style="width: 100%;line-height: 32px;">
+							</select>
+						</td>
+					</tr>
+					<tr class="refuse-check">
+						<th style="line-height: 34px;">其它时间</th>
+						<td>
+							<input type="text" id="otherTime"  onchange="otherTimeInputEvent()" data-field="datetime"   style="width: 50%;line-height: 28px; float: left" readonly>
+						</td>
+					</tr>
+				</table>
+				<div style="text-align: center;"><input type="button" class="btn btn-primary" id="refuse-btn" value="确定" style="margin-bottom: 10px"/></div>
+			</div>
+		</div>
+		<div class="page-div">
+			<div class="page float-lt">
+				<input type="button" class="btn btn-danger" name="" id="" value="返回" onclick="back()"/>
+			</div>
+			<div class="page float-rt">
+				<table class="page-table" border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+						</td>
+						<td>第<strong id="now"><!--1--></strong>页</td>
+						<td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

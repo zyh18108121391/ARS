@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>档案详情</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+    <link rel="stylesheet" href="css/report.css"/>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/layer/layer.js"></script>
+    <script src="../../js/av-mini-0.6.1.js"></script>
+    <script src="../../js/leancloud.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/reportDetail.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+<h1 style="text-align: center;">
+    <button class="btn btn-danger float-lt" onclick="back()">返回</button>
+    档案详情
+</h1>
+<hr/>
+
+<div class="container-fluid">
+    <div class="detail-div">
+        <!--处方详情-->
+        <div class="Null-div" style="display: none;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    档案详情
+                </div>
+                <div id="Null-turn" class="panel-body text-center">
+                    <!--暂未录入档案详情<a href="../Report/reportInput.html?id="></a>-->
+                </div>
+            </div>
+        </div>
+        <!--处方详情-->
+        <div class="Prescription-div" style="display: none;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    处方详情-【<span id="P-type"></span>】
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <p><strong>会员：</strong><span id="p-name"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>医生：</strong><span id="p-doctor"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>处方时间：</strong><span id="p-time"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>临床诊断：</strong><span id="p-Disease"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>金额：</strong><span id="p-price"></span>￥</p>
+                    </div>
+                </div>
+                <table class="table table-hover table-condensed table-bordered">
+                    <thead>
+                    <tr>
+                        <th>药品</th>
+                        <th>数量/单位</th>
+                        <th>用法</th>
+                        <th>用尽日期</th>
+                    </tr>
+                    </thead>
+                    <tbody id="p-body">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--检查详情-->
+        <div class="ExamReport-div" style="display: none;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    检查详情
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <p><strong>会员：</strong><span id="e-name">张三</span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>检查项目：</strong><span id="e-ExamItem"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>检查项目/部位：</strong><span id="e-ExamType"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>临床诊断：</strong><span id="e-Disease"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>阳性/阳性：</strong><span id="e-IsAbnormal"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>检查时间：</strong><span id="e-ExamDateTime"></span></p>
+                    </div>
+                </div>
+                <div class="panel-footer my-div">
+                    <div class="col-md-1 clearPadding">
+                        <div class="my-p-name">检查所见：</div>
+                    </div>
+                    <div class="col-md-11 clearPadding">
+                        <div class="my-p"><pre id="e-ExamFinding"></pre></div>
+                    </div>
+                    <div class="col-md-1 clearPadding">
+                        <div class="my-p-name">印象：</div>
+                    </div>
+                    <div class="col-md-11 clearPadding">
+                        <div class="my-p" ><pre id="e-Impression"></pre></div>
+                    </div>
+                    <div class="col-md-1 clearPadding">
+                        <div class="my-p-name">建议：</div>
+                    </div>
+                    <div class="col-md-11 clearPadding">
+                        <div class="my-p" ><pre id="e-Recommendation"></pre></div>
+                    </div>
+                    <div class="col-md-1 clearPadding">
+                        <div class="my-p-name">备注：</div>
+                    </div>
+                    <div class="col-md-11 clearPadding">
+                        <div class="my-p" ><pre id="e-Memo"></pre></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!--检验详情-->
+        <div class="LabReport-div" style="display: none;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    检验详情
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <p><strong>会员：</strong><span id="l-name"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>检验标本：</strong><span id="l-Specimen"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>检验目的：</strong><span id="l-Cause"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>临床诊断：</strong><span id="l-Disease"></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><strong>检验日期：</strong><span id="l-LabDateTime"></span></p>
+                    </div>
+                </div>
+                <table class="table table-hover table-condensed table-bordered">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>结果值</th>
+                        <th>正常标志</th>
+                        <th>参考范围</th>
+                        <th>检验时间</th>
+                    </tr>
+                    </thead>
+                    <tbody id="l-body">
+                        <!--<tr>
+                            <td colspan="5" class="null-td">无记录</td>
+                        </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="img-div">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                档案图片
+            </div>
+            <div class="panel-body">
+                <div class="input-img">
+                    <div class="jqzoom">
+                        <img src="" alt="" jqimg="" id="bigImg"/>
+                    </div>
+                    <div class="input-imgName">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+
+</html>

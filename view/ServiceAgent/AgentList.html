@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>所有坐席</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/main.css">
+
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="js/AgentList.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.addQueBtn {
+				position: absolute;
+				left: 0px;
+			}
+			
+			table img {
+				width: 40px;
+				height: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1 style="text-align: center" class="relative">
+			<a class="addQueBtn btn btn-primary" href="AddAgent.html">新增坐席</a>
+			所有坐席</h1>
+		<div></div>
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>头像</th>
+					<th>坐席编号</th>
+					<th>坐席姓名</th>
+					<th>电话号码</th>
+					<th>工作队列</th>
+					<th>是否班长</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="table-body">
+
+			</tbody>
+
+		</table>
+		<div class="page-div">
+			<div class="page float-rt">
+				<table class="page-table" border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+						</td>
+						<td>第<strong id="now"><!--1--></strong>页</td>
+						<td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="console"></div>
+	</body>
+
+</html>

@@ -1,0 +1,106 @@
+	#allDetailDiv table tbody td {
+		vertical-align: middle;
+	}
+	
+	.printCode p {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.printCode p span {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.edit_div {
+		display: none;
+		border-radius: 4px;
+		z-index: 999px;
+		background-color: #fff;
+		width: 600px;
+		height: 525px;
+		border: 2px #428BCA solid;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin-top: -300px;
+		margin-left: -300px;
+	}
+	.content img{
+		width: 100%;
+		height: 496px;
+	}
+	.typeName{
+		text-align: center;
+		line-height: 25px;
+	}
+	.my_close{
+		position: absolute;
+		cursor: pointer;
+		color: #0C89FF;
+		right: 2px;
+		top: 2px;
+	}	
+	.my_close a{
+		display: block;
+	}
+	.relative{
+		position: relative;
+	}
+	.selectMember{
+		border-radius: 2px;
+		background-color: #0C89FF;
+		display: block;
+		padding:0px 5px;
+		color: #fff;
+		text-align: center;
+		cursor: pointer;
+		display: inline-block;
+		float: right;
+	}
+	.d-ul ul,.d-ul li{
+		list-style-type:none;  
+		padding: 0 !important;
+	}
+	.d-ul li{
+		border: 1px #fff solid;
+		
+		margin: 10px;
+		float: left;
+	}
+	.d-ul li img{
+		width: 200px;
+		height: 200px;
+	}
+	.d-ul li:hover{
+		padding: 0px;
+		border: 1px rgba(0,0,0,.1) solid;
+	}
+	.d-text{
+		line-break: 20px;
+		text-align: center;
+	}
+	.msg-input{
+		width: 100%;
+		border-radius: 3px;
+    	padding: 5px;
+   	 	border: 1px solid #CCC;
+	}
+	.msg-textarea{
+		width: 100%;
+		height: 200px;
+		border-radius: 3px;
+    	padding: 5px;
+   	 	border: 1px solid #CCC;
+	}
+	.statu{
+		padding: 0px 5px;
+		background: #A59AA9;
+		min-width: 50px;
+		display:  inline-block;
+		line-height: 25px;
+		text-align: center;
+		color: #fff;
+		border-radius: 3px;
+	}
+	

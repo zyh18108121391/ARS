@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日程详情查看</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="https://cdn1.lncld.net/static/js/av-min-1.0.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="../member/css/member.css"/>
+    <script>
+        AV.init({
+            appId: 'to0nyg7vtky1bna4ybrclwrm3hm0r94oqw45eiost7mqrbi5',
+            appKey: 'kbq185r1thmzpbod54og7ml9vll7pzmb5yegd2jyyfcw3qaa'
+        });
+    </script>
+    <script src="../member/js/main.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/scheduleControl/scheduleDetail.js"></script>
+    <style>
+        .container{margin-top:30px}
+        .title{text-align: center;font-size: 22px;margin-bottom:10px}
+         button{margin:2px 6px}
+        .col-md-2{width:140px;height:150px;text-align: center;margin:10px;cursor: pointer}
+        .col-md-2 img{width:120px;height:130px}
+        .big_img{display:none;position: fixed;width:100%;height:100%;background: rgba(50,50,50,0.5);top:0;left:0}
+        .big_img img{position:absolute;width:300px;tOP:20%;left:50%;margin-left: -150px}
+    </style>
+</head>
+<body>
+<h2 class="sub-header" style="width: 100%;display: block;">会员详情<span id="buts" style="text-align: right;margin-left: 200px;">
+		</span></h2>
+		<div class="table-responsive">
+			<table id="orderTable" class="table table-striped">
+				<tr>
+					<th>会员</th>
+					<td>1</td>
+					<th>日程状态</th>
+					<td><span class="statu">确认</span></td>
+				</tr>
+				<tr>
+					<th>事项</th>
+					<td>1</td>
+					<th>诊断结果</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>预约时间</th>
+					<td>2</td>
+					<th>确认预约时间</th>
+					<td>2</td>
+				</tr>
+				<tr>
+					<th>实际履约时间</th>
+					<td >3</td>
+					<th>负责医生</th>
+					<td >3</td>
+				</tr> 
+				
+				<tr>
+					<th>医院</th>
+					<td></td>
+					<th>诊室</th>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<th>医生确认状态</th>
+					<td></td>
+					<th>医生驳回原因</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>会员确认状态</th>
+					<td></td>
+					<th>会员驳回原因</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>会员评价</th>
+					<td></td>
+					<th>会员评分</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>医生评价</th>
+					<td></td>
+					<th>医生评分</th>
+					<td></td>
+				</tr>
+			</table>
+		</div>	
+		
+		<div class="table-responsive" style="margin-top:0">
+			<div style="font-size: 20px;">相关档案</div>
+			<div class= "d-ul">
+				<ul id="d-list">
+					<!--<li>
+						<p class="d-img"><a href="#"><img src="../../images/young.jpg"/></a></p>
+						<p class="d-text"><a href="#">血常规</a></p>
+					</li>
+					<li>
+						<p class="d-img"><img src="../../images/young.jpg"/></p>
+						<p class="d-text">血常规</p>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+		
+		<!--描述：弹出div 编辑窗口 -->
+		<div id="edit_div" class="edit_div">
+			
+			<div class="typeName relative" >
+				<div id="typeName"></div>
+				<!--名称-->
+				<div class="my_close"><a  href="javascript:close()" >关闭</a></div>
+			</div>
+			
+			<div class="content">
+				<div id="reportImg">
+					<!--图片-->
+				</div>
+			</div>
+		</div><!--edit_div end-->
+</body>
+</html>

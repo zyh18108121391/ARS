@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>待转接工单</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/main.css">
+
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="js/waitingChange.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/order.css" />
+		<link rel="stylesheet" type="text/css" href="css/member.css" />
+		<style type="text/css">
+			caption {
+				text-align: center;
+				font-size: 30px;
+				font-weight: 500;
+				color: #333333;
+			}
+			
+			#table-body td {
+				max-width: 200px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<table id="work_list" class="table table-hover table-striped">
+			<caption>待转接工单</caption>
+			<thead>
+				<tr>
+					<th>会员姓名</th>
+					<th>接单客服</th>
+					<th>会员级别</th>
+					<!--<th>投诉类型</th>-->
+					<th>投诉级别</th>
+					<th>投诉对象类型</th>
+					<th>投诉对象</th>
+					<th>投诉内容</th>
+					<th>投诉时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="table-body">
+				<tr>
+					<td class="null-td" colspan="9">暂无记录</td>
+				</tr </tbody>
+		</table>
+		<div class="page-div">
+			<div class="page float-rt">
+				<table class="page-table" border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+						</td>
+						<td>第<strong id="now"><!--1--></strong>页</td>
+						<td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

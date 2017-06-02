@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>医嘱推送</title>
+
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/ui-dialog.css">
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/dialog-plus-min.js"></script>
+		<script type="text/javascript" src="../../js/data/index.js"></script>
+		<script src="js/av-mini-0.6.1.js"></script>
+		<script src="js/leancloud.js"></script>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+
+		<!--头部公共 end-->
+
+		<script src="js/member_PushMsg.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/member.css" />
+	</head>
+
+	<body>
+		<h2 class="sub-header">医嘱推送</h2>
+		<div>
+			选择模板：<select style="width: 200px;">
+					<option>模板1</option>
+					<option>模板2</option>
+					<option>模板3</option>
+			</select>
+			<span style="margin-left: 100px;">发送给：<span style="color: #204D74;"><strong id="name"></strong> </span></span>
+		</div>
+		<div style="margin-top: 10px;">
+			<table id="orderTable" class="table">
+				
+				<tr>
+					<th>标题:</th>
+					<td><input type="text" id="" value="模板一" class="msg-input"/></td>
+				</tr>
+				<tr>
+					<th>内容:</th>
+					<td><textarea class="msg-textarea" name="" rows="" cols="">早晨起来喝一杯水，不吃肉</textarea></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td></td>
+				</tr>
+			</table>
+			<div style="text-align: center"> <input type="button" class="btn btn-danger"  id="" value="确认推送" /></div>
+		</div>
+
+	</body>
+
+</html>

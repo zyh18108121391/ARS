@@ -1,0 +1,173 @@
+	.underline {
+		position: relative;
+	}
+	
+	.underline:after {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		height: 1px;
+		content: " ";
+		transform: scaleY(.5);
+		background-color: #ddd;
+	}
+	
+	.head-title {
+		text-align: center;
+		line-height: 35px;
+		font-size: 25px;
+	}
+	
+	.content {
+		padding: 50px;
+	}
+	
+	.content-left {
+		text-align: center;
+		width: 30%;
+	}
+	
+	.content-right {
+		width: 70%;
+	}
+	
+	.head-img {
+		border-radius: 3px;
+		width: 100px;
+		height: 100px;
+	}
+	
+	.p-table {
+		line-height: 30px;
+	}
+	
+	.p-table tr {
+		padding: 5px;
+		border-bottom: 1px #ddd solid;
+		line-height: 30px;
+	}
+	
+	.p-table th {
+		width: 200px;
+		text-align: left;
+	}
+	
+	.p-table td {
+		width: 100px;
+		text-align: center;
+	}
+	
+	.title {
+		text-align: center;
+		font-size: 22px;
+		margin-bottom: 10px
+	}
+	
+	.col-sm-3 {
+		border-bottom: 1px solid #9d9d9d;
+		text-align: center;
+		padding: 5px 0;
+		margin-bottom: 20px
+	}
+	
+	.selected {
+		border: 1px solid #9d9d9d;
+		border-bottom: 0
+	}
+	
+	.img-responsive {
+		max-height: 120px;
+	}
+	
+	.people_img {
+		text-align: right;
+		width: 120px
+	}
+	
+	.people_img img {
+		width: 120px;
+		margin-bottom: 5px
+	}
+	
+	.changePhoneNum,
+	.changePassword {
+		color: #0c89ff;
+		cursor: pointer
+	}
+	
+	#upFile,
+	.select_hos,
+	.change_pho_pass {
+		display: none;
+		z-index: 2;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(50, 50, 50, 0.5);
+		top: 0;
+		left: 0
+	}
+	
+	.inner {
+		position: absolute;
+		background: #FFFFFF;
+		width: 300px;
+		height: 100px;
+		left: 50%;
+		top: 50%;
+		margin: -100px 0 0 -150px;
+		text-align: center;
+		padding: 10px;
+	}
+	
+	.select_d {
+		position: absolute;
+		left: 25%;
+		top: 25%;
+		width: 50%;
+		color: #FFFFFF;
+		padding: 15px;
+		background: #337ab7
+	}
+	
+	.sure_add {
+		margin-top: 5px
+	}
+	
+	.inner_d {
+		position: absolute;
+		left: 25%;
+		top: 25%;
+		width: 50%;
+		height: 240px;
+		color: #999999;
+		background: #FFFFFF
+	}
+	
+	.inner_d h2 {
+		background: #337ab7;
+		color: #FFFFFF;
+		margin: 0 0 20px 0;
+		padding: 8px;
+		font-size: 20px
+	}
+	
+	.inner_d input {
+		position: relative;
+		width: 70%;
+		left: 15%;
+	}
+	
+	.inner_d button {
+		position: relative;
+		width: 100px;
+		left: 50%;
+		top: 20px;
+		margin-left: -50px;
+	}
+	
+	.f {
+		border-bottom: #337ab7 solid 1px;
+		padding-bottom: 15px;
+	}

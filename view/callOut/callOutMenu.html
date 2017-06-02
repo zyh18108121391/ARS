@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/main.css">
+
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/av-mini-0.6.1.js"></script>
+		<script src="../../js/leancloud.js"></script>
+		<!--push model-->
+		<script src="../../js/AV.push.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/MyPushAndCallPublic.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/callOutMenu.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/MyPushAndCallPublic.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				padding-top: 10px;
+				padding-bottom: 30px;
+			}
+			
+			input,
+			button,
+			select,
+			textarea {
+				outline: none;
+			}
+			.center-div{
+				width: 305px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.content {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.icon-center {
+				width: 272px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.content-left {
+				position: absolute;
+				top: 20px;
+				text-align: center;
+				height: 128px;
+				left: 0;
+				right: 0;
+			}
+			
+			.content-right {
+				position: absolute;
+				top: 40%;
+				left: 0;
+				right: 0;
+				text-align: center;
+				background-color: #fff;
+			}
+			
+			.callout-icon {
+				width: 100px;
+				height: 100px;
+				background-size: 100px;
+				background-image: url(../../images/callOut-icon.png);
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+			
+			.before-text {
+				font-family: "微软雅黑";
+				font-size: 36px;
+				line-height: 100px
+			}
+			
+			.call-input {
+				border-radius: 4px;
+				height: 40px;
+				width: 200px !important;
+				padding: 5px;
+				border: 1px #ddd solid;
+			}
+			
+			.call-input:focus {
+				border-color: #8CC4E4;
+			}
+			
+			.call-botton {
+				width: 100px;
+				height: 38px;
+			}
+			/**search-ul***/
+			.search_results {
+				top: 40px;
+				max-height: 200px;
+				overflow-y: scroll;
+				overflow-x: hidden;
+				position: absolute;
+				background-color: #ffffff;
+				z-index: 1000;
+				border: 1px solid #E4E6E7;
+				display: block;
+			}
+			.search_results ul {
+				list-style: none;
+				margin: 0px auto;
+				padding: 0px;
+			}
+			.search_results li {
+				white-space: nowrap;
+				text-align: start;
+				line-height: 30px;
+				color: #1020FA;
+				border-bottom: 1px #F5F5F5 solid;
+				padding: 5px;
+				margin: 0 auto;
+			}
+			.search_results li img {
+				padding: 0;
+				margin-right: 3px;
+				height: 30px;
+				width: 30px;
+			}
+			
+			.search_results li:hover {
+				background-color: #E3E3E3;
+				cursor: pointer;
+			}
+			.search_results li a {
+				color: #666;
+				width: 300px;
+				padding: 2px;
+				text-decoration: none;
+				display: block;
+			}
+			.search_results li small {
+				padding-left: 5px;
+				color: #999;
+			}
+			.tel-count{
+				position: absolute;
+				border-radius: 50%;
+				top: 12px;
+   				right: 110px;
+				width: 15px;
+				height: 15px;
+				color: #fff;
+				font-size: 12px;
+				background-color: #11cd6e;
+				display: block;
+			}
+			/*search-ul*/
+		</style>
+	</head>
+	<body>
+		<div class="content-left">
+			<div class="icon-center">
+				<div class="before-text float-rt">坐席外呼</div>
+				<div class="callout-icon float-rt"></div>
+				<div class="clearfix">
+				</div>
+			</div>
+		</div>
+		<div class="content-right">
+			<div class="center-div relative">
+			<input class="call-input" type="number" onmouseleave="hide()" onmouseover="show()" name="" id="SearchTelNo" value="" placeholder="电话号码" oninput="OnInput(event)" />
+			<span class="tel-count">1</span>
+			<div class="search_results" onmouseleave="hide()" onmouseover="show()">
+				<ul id="input_ul">
+					<!--<li><img src="../../images/s-member.png"/>123</li>
+					<li><img src="../../images/s-doctor.png"/>123</li>-->
+				</ul>
+			</div>
+			<input id="callbtn" class="btn btn-danger call-botton" type="button" value="呼叫" onclick="callOut()"/>
+			</div>
+		</div>
+	</body>
+</html>

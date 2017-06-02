@@ -1,0 +1,570 @@
+caption {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.input-img img {
+    width: 748px;
+}
+
+.input-imgName {
+    text-align: center;
+    padding: 5px;
+}
+
+.re-type {
+    margin-bottom: 10px;
+}
+
+.re-contant {
+    padding: 10px;
+    border: 2px #aaa solid;
+}
+
+.search-input {
+    margin-left: 15px;
+}
+
+.marginB10 {
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.drug-select {
+    width: 200px;
+}
+
+.drug-input {
+    margin-left: 0px;
+    width: 200px !important;
+}
+
+.drug-li input {
+    margin: 5px 0px;
+}
+
+.unit-input {
+    width: 70px !important;
+}
+
+.unit {
+    padding: 5px;
+}
+
+.usage-input {
+    width: 330px !important;
+    margin-left: 0;
+}
+
+.drug-li {
+    border: 1px #eee solid;
+    padding: 0px 5px;
+    background-color: #eee;
+    margin-top: 5px;
+}
+
+.eject_div {
+    z-index: 10000;
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -375px;
+    margin-top: -180px;
+    width: 750px;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 13px;
+    border:4px #1D7DB1 solid;
+}
+
+.Exam-eject_div {
+    width: 500px;
+    margin-left: -250px;
+}
+
+.Eject-title {
+    background-color: #1D7DB1;
+    line-height: 25px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+}
+
+.jy {
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: #b3b3b3;
+    display: none;
+    position: absolute;
+}
+
+.eject-table {
+    margin-top: 2px;
+    margin-bottom: 0px !important;
+}
+
+.eject-table input, .eject-table select, .eject-table textarea {
+    width: 150px;
+    padding: 3px;
+}
+
+.eject-table select {
+    height: 30px !important;
+}
+
+.close-btn {
+    position: absolute;
+    right: 2px;
+    top: 4px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 0px;
+    background-repeat: no-repeat;
+    background-image: url(../../../images/iconfont-close.png);
+}
+
+.my-table-div {
+    padding: 0px 5px;
+}
+
+.my-table-div div {
+    padding: 0px 5px;
+}
+
+.search-select {
+    width: 190px;
+    padding: 0px 3px;
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+.width130 {
+    width: 130px;
+}
+
+.drug-a-del {
+    float: right;
+    line-height: 24px;
+    margin-right: 15px;
+}
+
+.btn-div {
+    margin: 20px 0px 30px 0px;
+}
+
+.seupDate-input {
+    width: 130px !important;
+}
+
+.span-text {
+    padding: 0px 10px;
+}
+
+.my-select {
+    margin-left: 15px;
+}
+
+.my-textarea {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    height: 80px;
+}
+
+.lab-unit {
+    padding: 0px 5px;
+}
+
+.my-Cause-table td {
+    line-height: 25px;
+    min-width: 100px;
+}
+
+.border-div {
+    border-radius: 3px;
+    border: 1px #eee solid;
+}
+
+.hienOrShow {
+    display: inline-block;
+    float: right;
+    width: 25px;
+    margin-top: -2px;
+    height: 25px;
+    cursor: pointer;
+    background-position: center;
+    background-size: 25px;
+    background-image: url("../img/down.png");
+}
+
+.show-icon {
+    transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+}
+
+.selected-span {
+    font-weight: 700;
+    color: rgb(4, 144, 23);
+}
+
+.lab-td {
+    max-width: 140px;
+}
+
+.add-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    background-position: center;
+}
+
+.add-btn i {
+    width: 20px;
+    height: 25px;
+    display: block;
+    float: left;
+    background-size: 20px;
+    background-position: center;
+    background-image: url("../img/add-icon.png");
+}
+
+.add-btn span {
+    color: #337ab7;
+    float: right;
+    line-height: 25px;
+}
+
+.check-h1 {
+    height: 40px;
+    border-bottom: 1px #ddd solid;
+}
+
+.addQueBtn1 {
+    position: absolute;
+    left: 0px;
+    border: 1px #ddd solid;
+    border-radius: 0px;
+    bottom: -1px;
+    color: #aaa;
+}
+
+.addQueBtn1:hover,
+.addQueBtn2:hover {
+    color: #0C89FF !important;
+}
+
+.check-active {
+    color: #0C89FF !important;
+    border-bottom-color: #fff !important;
+}
+
+.check-active:hover {
+    cursor: hide;
+}
+
+.active1 {
+    border-left-color: #fff !important;
+    border-top-color: #fff !important;
+}
+
+.active2 {
+    border-right-color: #fff !important;
+    border-top-color: #fff !important;
+}
+
+.addQueBtn2 {
+    position: absolute;
+    border: 1px #ddd solid;
+    border-left: 0px;;
+    left: 82px;
+    border-radius: 0px;
+    bottom: -1px;
+    color: #aaa;
+}
+
+.edit-div-li {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.my-hr {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.drug-type-input {
+    margin: 10px;
+    text-align: center;
+    line-height: 30px;
+
+}
+
+.drug-type-input input {
+    width: 150px;
+    margin-left: 5px;
+}
+
+.center-div {
+    line-height: 30px;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.center-div {
+    line-height: 30px;
+    width: 230px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.center-div span {
+    width: 80px;
+}
+
+.eject-hight {
+    height: 30px !important;
+}
+
+.eject-width {
+    width: 150px !important;
+}
+
+.exam-sub-type {
+    display: none;
+}
+
+.lab-delete-a {
+    margin-top: 0px;
+    margin-right: 10px;
+}
+
+.my-add-btn {
+    padding: 5px !important;
+}
+
+.Lab-eject_div {
+    display: none;
+    width: 660px;
+    margin-left: -325px;
+}
+
+.LabName-input {
+    display: none;
+}
+
+.LabCause-input {
+    display: none;
+}
+
+.my-clearfix:after {
+    content: '';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.my-clearfix {
+    margin-bottom: 5px;
+}
+
+.item-DIV {
+    padding: 8px 0px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.Item-name {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.from-member {
+    display: none;
+}
+
+.pew:hover {
+    cursor: move;
+}
+
+.width100 {
+    width: 100% !important;
+}
+
+.drug-name {
+    width: 330px !important;
+}
+
+/**search-ul***/
+.search_results {
+    max-height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    background-color: #ffffff;
+    z-index: 1000;
+    border: 1px solid #E4E6E7;
+    display: none;
+}
+
+.search_results ul {
+    list-style: none;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+.search_results li {
+    text-align: start;
+    line-height: 30px;
+    color: #1020FA;
+    border-bottom: 1px #F5F5F5 solid;
+    padding: 5px;
+    margin: 0 auto;
+}
+
+.search_results li img {
+    padding: 0;
+    margin-right: 3px;
+    height: 30px;
+    width: 30px;
+}
+
+.search_results li:hover {
+    background-color: #337ab7;
+    cursor: pointer;
+    color: #fff
+}
+
+.search_results li:hover small {
+    color: #fff
+}
+
+.search_results li small {
+    padding-left: 5px;
+    color: #999;
+}
+
+.drug-search {
+    width: 330px;
+}
+
+.flag-success {
+    text-align: center;
+    position: absolute;
+    border-radius: 50%;
+    top: 13px;
+    left: 315px;
+    width: 15px;
+    height: 15px;
+    color: #fff;
+    font-size: 12px;
+    background-color: rgb(17, 205, 110);
+    display: none;
+}
+
+.my-input {
+    margin-top: 5px;
+    padding: 5px;
+    height: 35px;
+    border: 1px solid #CCCCCC;
+    width: 100% !important;
+}
+
+.disease-ul {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    list-style: none;
+    padding: 0;
+}
+
+.disease-ul li {
+    background-color: #aaa;
+    color: #fff;
+    font-size: 12px !important;
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+}
+
+.disease-ul li:hover {
+    background-color: #004CFF;
+    color: #fff
+}
+
+.margintop10 {
+    margin-top: 10px;
+}
+
+.disease-search {
+    width: 100%;
+    display: none;
+}
+.no-disease{
+    cursor: default !important;
+    background-color: #fff !important;
+    color: #aaa !important;
+}
+.no-disease:hover {
+    cursor: default !important;
+    background-color: #fff !important;
+    color: #aaa !important;
+}
+.no-disease a{
+    font-size: 12px !important;
+}
+.handle:hover{
+    cursor: move;
+}
+.icon-btn-cls{
+    display: inline-block;
+    width: 32px;
+    height: 34px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+}
+.delete-icon{
+    background-image: url("../img/delete-icon.png")
+}
+.delete-icon:hover{
+    background-image: url("../img/delete-icon2.png")
+}
+.merge-icon{
+    background-image: url("../img/merge-icon.png")
+}
+.merge-icon:hover{
+     background-image: url("../img/merge-icon2.png")
+}
+.Merge-eject_div {
+    display: none;
+    width: 400px;
+    margin-left: -200px;
+
+
+}
+.merge-IDtext{
+    width: 250px;
+    border-bottom: 1px #eee solid;
+    display: inline-block;
+}
+.merge-btn-copy{
+    margin-left: 4px;
+    font-size: 12px;
+    padding: 2px 5px;
+}
+.merge-a{
+    margin-left: 6px;
+}

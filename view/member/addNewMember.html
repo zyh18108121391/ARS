@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>录入会员</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script src="../../js/layer/layer.js"></script>
+    <script src="../../js/av-mini-0.6.1.js"></script>
+    <script src="../../js/leancloud.js"></script>
+    <link rel="stylesheet" href="../../css/DateTimePicker.css" />
+    <script src="../../js/DateTimePicker.js"></script>
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+
+    <!--头部公共 end-->
+
+    <script src="js/addNewMember.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="css/member.css"/>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#dtBox").DateTimePicker({
+                dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
+            });
+        });
+    </script>
+    <style>
+        .add-input {
+            width: 200px !important;
+            padding: 3px;
+            height: 30px !important;
+        }
+
+        .doctor-td-edit {
+            float: left;
+            width: 70px;
+            margin-left: 10px;
+        }
+        .memo{
+            width:200px;
+            height: 60px;
+        }
+        .radio-span{
+            padding: 8px;
+            border: 1px #ddd solid;
+        }
+        .notice{
+            color:green;
+        }
+        .notice strong{
+            color:red;
+        }
+        .notice-level{
+            color:#0daf13!important;
+        }
+
+        .margintop10 {
+            margin-top: 10px;
+        }
+        .disease-ul {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            list-style: none;
+            padding: 0;
+        }
+        .disease-ul li{
+            margin-bottom: 5px;
+        }
+        .my-input {
+            margin-top: 5px;
+            padding: 5px;
+            height: 35px;
+            border: 1px solid #CCCCCC;
+            width: 100% !important;
+        }
+        .table-responsive{
+            overflow-x: visible;
+        }
+        /**search-ul***/
+        .search_results {
+            max-height: 200px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            position: absolute;
+            background-color: #ffffff;
+            z-index: 1000;
+            border: 1px solid #E4E6E7;
+            display: none;
+        }
+        .search_results {
+            width:100%;
+        }
+        .search_results ul {
+            list-style: none;
+            margin: 0px auto;
+            padding: 0px;
+        }
+
+        .search_results li {
+            text-align: start;
+            line-height: 30px;
+            color: #1020FA;
+            border-bottom: 1px #F5F5F5 solid;
+            padding: 5px;
+            margin: 0 auto;
+        }
+
+        .search_results li img {
+            padding: 0;
+            margin-right: 3px;
+            height: 30px;
+            width: 30px;
+        }
+
+        .search_results li:hover {
+            background-color: #337ab7;
+            cursor: pointer;
+            color: #fff
+        }
+
+        .search_results li:hover small {
+            color: #fff
+        }
+
+        .search_results li small {
+            padding-left: 5px;
+            color: #999;
+        }
+        .no-disease{
+            cursor: default !important;
+            background-color: #fff !important;
+            color: #aaa !important;
+        }
+        .no-disease:hover {
+            cursor: default !important;
+            background-color: #fff !important;
+            color: #aaa !important;
+        }
+        .no-disease a{
+            font-size: 12px !important;
+        }
+        .disease-ul {
+            margin-bottom: 5px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .disease-ul li {
+            background-color: #aaa;
+            color: #fff;
+            font-size: 12px !important;
+            display: inline-block;
+            list-style: none;
+            margin: 0;
+        }
+
+        .disease-ul li:hover {
+            background-color: #004CFF;
+            color: #fff
+        }
+    </style>
+</head>
+<body>
+<h2 class="sub-header relative">录入会员</h2>
+<div class="table-responsive">
+    <table id="orderTable" class="table table-striped">
+        <tr>
+            <th>*电话</th>
+            <td>
+                <input oninput="changEvent(event)" class="add-input" id="MobilePhoneNo" type="text" placeholder="电话号码"/>
+                <span class="notice" id="notice"></span>
+            </td>
+            <th>身份证号</th>
+            <td>
+                <input class="add-input" id="IDCard" oninput="IDCardChange(event)" type="text" placeholder="身份证号"/>
+                <span class="radio-span">
+                    <input type="radio" name="level-check" value="1" checked>会员升级
+                    <input type="radio" name="level-check" value="2">会员新增
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <th>*等级</th>
+            <td>
+                <select id="MemberLevel" class="add-input">
+                    <option value="all">--请选择等级--</option>
+                </select>
+            </td>
+            <th>所在城市</th>
+            <td>
+                <select id="City" class="add-input">
+                    <option value="all">--请选择城市--</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>主治医生</th>
+            <td>
+                <span id="PersonalDoctor" class="float-lt"></span>
+                <a class="doctor-td-edit" href="javascript:editDoctor()">点击选择</a>
+            </td>
+            <th>会员管家</th>
+            <td>
+                <span id="PersonalButler" class="float-lt"></span>
+                <a class="doctor-td-edit" href="javascript:editButler()">点击选择</a>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="1">诊断病情</th>
+            <td colspan="3" style="max-width: 300px">
+                <div class="marginB10 border-div">
+                    <div class="relative">
+                        <input id="input-disease" type="text" date-type="0" oninput="searchDisease(0)" placeholder="病种名称"
+                               class="my-input Pre-disease-input">
+                        <div class="search_results disease-search" onmouseover="serchMouseOver()" onmouseout="serchMouseOut()">
+                            <ul class="input_ul disease-search-input">
+                                <!--<li>十二指肠憩室</li>
+                                <li class="no-disease">没有找到该疾病<a class="btn btn-danger" href="#">添加并选中</a></li>
+                            --></ul>
+                        </div>
+                    </div>
+                    <div class="margintop10"><span class="">已选:</span></div>
+                    <ul class="Pre-disease-ul disease-ul" >
+                        <!--<li class="btn btn-default" onclick="removeDisease(this)">慢性萎缩性胃炎伴中度肠化</li>
+                    --></ul>
+                </div>
+            </td>
+        </tr>
+        <tr style="height: 0px;">
+            <th colspan="1" style="height: 0px;padding: 0px;"></th>
+            <td colspan="3" style="height: 0px;padding: 0px;"></td>
+        </tr>
+    </table>
+</div>
+<div class="table-responsive">
+    <div class="detail-thead relative">
+        <span>更多基本资料</span>
+    </div>
+    <div id="dtBox"></div>
+    <div id="showTime"></div>
+    <table id="MoreData" class="table table-striped">
+        <tbody style="">
+        <tr>
+            <th>*姓名</th>
+            <td>
+                <input class="add-input" id="Name" type="text" placeholder="姓名"/>
+            </td>
+            <th>性别</th>
+            <td id="Sex">
+                <input type="radio" name="sex" value="0" checked>男
+                <input type="radio" name="sex" value="1">女
+                <input type="radio" name="sex" value="-1">不确定
+            </td>
+
+            <th>婚否</th>
+            <td id="MaritalStatus">
+                <input type="radio" name="marry" value="1" checked>已婚
+                <input type="radio" name="marry" value="0">未婚
+            </td>
+        </tr>
+        <tr>
+            <th>民族</th>
+            <td>
+                <input class="add-input" id="Nation" type="text" placeholder="民族"/>
+            </td>
+            <th>籍贯</th>
+            <td>
+                <input class="add-input" id="NativePlace" type="text" placeholder="籍贯"/>
+            </td>
+            <th>地址</th>
+            <td>
+                <input class="add-input" id="Address" type="text" placeholder="地址"/>
+            </td>
+        </tr>
+        <tr>
+            <th>身高(cm)</th>
+            <td>
+                <input class="add-input" id="Height" type="text" placeholder="身高"/>
+            </td>
+            <th>体重(kg)</th>
+            <td>
+                <input class="add-input" id="Weight" type="text" placeholder="体重"/>
+            </td>
+            <th>职业</th>
+            <td>
+                <input class="add-input" id="Profession" type="text" placeholder="职业"/>
+            </td>
+        </tr>
+        <tr>
+
+            <th>发病时间</th>
+            <td>
+                <input class="add-input" id="DiseaseTime" type="text" placeholder="发病时间"/>
+            </td>
+            <th>联系时间</th>
+            <td>
+                <input class="add-input" id="Contect_Time" type="text" data-field="datetime" placeholder="联系时间" readonly/>
+            </td>
+            <th>备注</th>
+            <td>
+                <textarea class="memo" id="Memo" placeholder="备注"></textarea>
+            </td>
+        </tr>
+        <tr style="height: 0px;">
+            <th colspan="1" style="height: 0px;padding: 0px;"></th>
+            <td colspan="5" style="height: 0px;padding: 0px;"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div style="text-align: center; margin-bottom: 30px">
+    <input type="button"  class="float-lt btn btn-danger" value="返回" onclick="back()"/>
+    <input id="submit-btn" type="button" class="btn btn-primary" value="提交" onclick="addNewMember()"/>
+    <input id="sendMessage" type="checkbox"/>发送欢迎短信
+</div>
+<div class="jy"></div>
+<!--描述：弹出div 编辑窗口 -->
+<div id="edit_div" class="edit_div">
+    <div id="edit-title" class="wiki-title ask-title relative"><span>主治医生</span>
+        <a href="javascript:closeAsk()" class="close-btn"></a>
+    </div>
+    <div class="edit-div-li">
+        <label class="lable-l">医院:</label>
+        <select name="" id="Hospital" class="span-r">
+            <option value="all">请选择医院</option>
+        </select>
+    </div>
+    <div class="edit-div-li">
+        <label class="lable-l my-labelName"><!--医生:--></label>
+        <select name="" id="select" class="span-r">
+            <!--<option>请选择医生</option>-->
+        </select>
+    </div>
+    <div class="edit-div-li" style="text-align: center;">
+        <input id="changeBtn" type="button" class="btn btn-danger" value="确定" onclick="changeFun()"/>
+    </div>
+</div>
+<!--edit_div end-->
+
+</body>
+
+</html>

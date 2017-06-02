@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>咨询详情</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/ui-dialog.css">
+		<script src="js/av-mini-0.6.1.js"></script>
+		<script src="js/leancloud.js"></script>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<!--头部公共 end-->
+		<script src="js/answer_Detail.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/answer.css" />
+		<style>
+			.container {
+				margin-top: 30px
+			}
+			.title {
+				text-align: center;
+				font-size: 22px;
+				margin-bottom: 10px
+			}
+			.s_member {
+				padding: 10px 0;
+				border-bottom: solid #337ab7 1px;
+			}
+			.img-responsive {
+				max-height: 120px
+			}
+			.member_info div {
+				margin: 5px 0;
+			}
+			.member_info~div {
+				margin: 5px 0;
+			}
+			form {
+				padding: 10px 0;
+			}
+			
+			.reply_text {
+				margin: 10px 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container" style="width: 100%; padding: 0px 50px;">
+			<div class="title">
+				咨询详情
+			</div>
+			<div class="row s_member">
+				<div id="head" class="col-md-1 head-img" style="padding: 5px;"></div>
+				<div class="col-md-10">
+					<div class="row member_info">
+						<div class="col-md-3"><span id="name" ></span><span id="level"></span></div>
+					</div>
+					<div id="time" style="font-size:14px ;color: #9a9a9a;">2016-1-11 12:20:34</div>
+					<div ><strong id="content"></strong></div>
+				</div>
+			</div>
+			<div class="row" id="replay_div" style="display: none;">
+				<textarea id="replay" class="form-control reply_text" rows="3"></textarea>
+				<button type="button" class="btn btn-primary " style="float: right" onclick="replay()">回复</button>
+			</div>
+			<div id="thread">
+				<!--<div class="ticket-thread">
+					<div class="thread-status">
+						<div class="head"><img src="../../images/banner.jpg"/></div>
+						<div class="head-name">
+							<div><strong class="ticket-username">匿名用户</strong></div>
+							<div><span class="time">@ 2016/5/21 00:20:52</span></div>
+						</div>
+						<div class="del-btn"><a href="">删除</a></div>
+						<div class="clear"></div>
+					</div>
+					<div class="thread-contant">
+						<pre>可以吗？</pre>
+					</div>
+				</div>-->
+
+		</div>
+	</body>
+
+</html>

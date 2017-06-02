@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>就诊记录详情</title>
+
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/ui-dialog.css">
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/dialog-plus-min.js"></script>
+		<script type="text/javascript" src="../../js/data/index.js"></script>
+		<script src="js/av-mini-0.6.1.js"></script>
+		<script src="js/leancloud.js"></script>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/DateTimePicker.css" />
+		<script type="text/javascript" src="js/DateTimePicker.js"></script>
+		<!--头部公共 end-->
+		
+		<script src="js/memberNewEvent.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/member.css"/>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#dtBox").DateTimePicker({
+					dateFormat: "yyyy-MMM-dd"
+				});
+			});
+		</script>
+		<style type="text/css">
+			select{
+				padding-left: 5px;
+			}
+		</style>
+	</head>
+
+	
+	<body>
+		<section id="NewEvent" class="NewEvent" style="display: block;">
+		<h2 class="sub-header">新建预约</h2>
+		<div class="table-responsive">
+			<table id="orderTable" class="table table-striped">
+				<tr>
+					<th>会员</th>
+					<td id="" ><span id="memberName" data_id="">请选择</span><span class="selectMember" onclick="selectMember()">选择会员</span></td>
+					<th>事项</th>
+					<td>
+						<select name="EventType" style="width: 155px;padding-left:5PX ;" id="EventType">
+                    		
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>预约时间</th>
+					<td id="">
+						<input type="text" id="time" data-field="datetime" style="width: 155px;"readonly>
+					</td>
+					<th>医院</th>
+					<td id="Disease">
+						<select name="Hospital" style="width: 155px;" id="Hospital">
+                    	</select>
+					</td>
+					<div id="dtBox"></div>
+				</tr>
+				<tr>
+					<th>诊室</th>
+					<td id="City">
+						<select name="ConsultingRoom" style="width: 155px;" id="ConsultingRoom">
+                    	
+						</select>
+					</td>
+					<th>注意事项</th>
+					<td>
+						<textarea id="notice" name="" rows="" cols="" style="width: 300px;"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>相关资料图片</th>
+					<td>
+						<div style="display: inline-block;"><img id="ImgPr" width="155" height="125" /></div>
+						<input   id="Image" type="file">
+					</td>
+				</tr>
+			</table>
+			 <div>
+    			<input type="button" class="btn btn-danger" name="" id="subButton" onclick="NewEvent()" value="确定预约" />
+   	 		</div>
+		</div>
+	</section>
+		
+	<section id="list" class="memberList" style="display: none;">
+    <table id="member_list" class="table table-hover table-striped">
+        <caption style="text-align: center;font-size: 22px">
+           选择会员
+        </caption>
+        <thead>
+        <tr>
+            <td colspan="10">会员等级：<select><option>查看所有</option></select>&nbsp;&nbsp;&nbsp;&nbsp;
+                诊断病情：<select><option>查看所有</option><option>肠化生</option><option>异型增生</option><option>早期胃癌</option><option>慢性乙肝</option><option>肝硬化</option><option>肝硬化失代偿期</option><option>肝癌</option></select>&nbsp;&nbsp;&nbsp;&nbsp;
+                满意度：<select><option>查看所有</option><option>一星</option><option>两星</option><option>三星</option><option>四星</option><option>五星</option></select></td>
+        </tr>
+        <tr>
+        	 <th>选择</th>
+            <th>头像</th>
+            <th>姓名</th>
+            <th>等级</th>
+            <th>加入时间</th>
+            <th>诊断病情</th>
+            <th>城市</th>
+            <th>最近复诊</th>
+            <th>最近随访</th>
+            <th>最近续药</th>
+            <th>满意度</th>
+            <th>活跃度</th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
+           <!--	<tr>
+            	<td><img src="../../images/check.png" width="30px"></td>
+            	<td>张三</td>
+            	<td><img src="../../images/check.png" width="15px">标准版</td>
+            	<td><input type="radio" name="1" id="" value="" /></td>
+            	<td><input type="radio" name="1" id="" value="" /></td>
+            	<td><input type="radio" name="1" id="" value="" /></td>
+            	<td>test</td>
+            	<td>test</td>
+            	<td>test</td>
+            	<td>test</td>
+            	<td>test</td>
+            	<td><a href="javascript:;">新建预约</a>|<a href="javascript:;">医嘱推送</a>|<a href="javascript:;">查看历史日程</a></td>
+            </tr>-->
+        </tbody>
+      
+    </table>
+    <div>
+    	<input type="button" class="btn btn-danger" name="" id="" onclick="SelectBtn()" value="确定" />
+   		<input type="button" class="btn btn-danger" name="" id="" onclick="SelectBack()" value="取消" />
+    </div>
+</section>	
+		
+	</body>
+
+</html>

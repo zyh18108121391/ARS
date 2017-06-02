@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>login</title>
+    <meta charset="utf-8">
+    <link href="css/login.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/layer/layer.js"></script>
+    <script src="js/av-mini-0.6.1.js"></script>
+	<script src="js/leancloud.js"></script>
+	<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div class="login">
+
+    <div class="login-top">
+        <h2></h2>
+        <form>
+            <input id="sysuser" type="text" value="帐号" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '用户帐号';}" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+            <input id="password" type="password" value="123" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '输入密码';}">
+        </form>
+        <div class="forgot">
+            <input type="submit" id="submit" value="登录" onclick="login()">
+        </div>
+    </div>
+    <div class="login-bottom">
+
+    </div>
+</div>
+<div class="copyright">
+    <p>Copyright &copy; 2016.<a href="#" target="_blank">ARS</a></p>
+</div>
+
+</body>
+</html>

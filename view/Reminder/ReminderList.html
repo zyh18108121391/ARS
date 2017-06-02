@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>日程提醒</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/layer/layer.js"></script>
+    <script src="../../js/av-mini-0.6.1.js"></script>
+    <script src="../../js/leancloud.js"></script>
+    <script src="../../js/laydate/laydate.js"></script>
+
+    <script src="../../js/AV.push.js"></script>
+    <script src="js/reminder.js" type="text/javascript"></script>
+    <script src="../../js/MyPushAndCallPublic.js"></script>
+    <style>
+        .waitingLoadingList {
+            padding-top: 10%;
+            font-size: 0;
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            z-index: 999;
+            left: 0;
+            right: 0;
+            bottom: -100px;
+            text-align: center;
+            color: #6d6d6d;
+        }
+
+        .loading-text {
+            font-size: 18px;
+        }
+
+        .loadin-icon {
+            display: inline-block;
+            margin-top: 2px;
+            width: 20px;
+            height: 20px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 20px;
+            background-image: url("../../images/loading-icon.gif");
+        }
+
+        .addQueBtn1 {
+            position: absolute;
+            left: 0px;
+            border: 1px #ddd solid;
+            border-radius: 0px;
+            bottom: -1px;
+            color: #aaa;
+        }
+
+        .addQueBtn1:hover,
+        .addQueBtn2:hover {
+            color: #0C89FF !important;
+        }
+
+        .check-active {
+            color: #333 !important;
+            border-bottom-color: #fff !important;
+        }
+
+        .check-active:hover {
+            cursor: hide;
+        }
+
+        .active1 {
+            border-left-color: #fff !important;
+            border-top-color: #fff !important;
+        }
+
+        .active2 {
+            border-right-color: #fff !important;
+            border-top-color: #fff !important;
+        }
+
+        .addQueBtn2 {
+            position: absolute;
+            border: 1px #ddd solid;
+            border-left: 0px;
+            left: 68px;
+            border-radius: 0px;
+            bottom: -1px;
+            color: #aaa;
+        }
+
+        .check-h1 {
+            border-bottom: 1px #ddd solid;
+        }
+
+        .my-layer-input input {
+            width: 100%;
+        }
+
+        .text-color-1 {
+            color: #eea236;
+        }
+
+        .text-color-2 {
+            color: #46b8da;
+        }
+
+        .text-color-3 {
+            color: red;
+        }
+
+        .table-doctor {
+            max-width: 62px;
+
+        }
+
+        .table-MemberName {
+            max-width: 62px;
+        }
+
+        .table-Hospital {
+            max-width: 140px;
+        }
+
+        .marginB10 {
+            margin: 10px;
+        }
+
+        .margintop10 {
+            margin-top: 10px;
+        }
+
+        .table {
+            min-width: 1000px;
+            border-bottom: 1px #ddd solid;
+        }
+        .null-td {
+            text-align: center;
+            color: #aaa;
+        }
+        .r-editTime-a{
+            margin-left: 5px;
+        }
+        .remind-call{
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="waitingLoadingList">
+    <P><i class="loadin-icon"></i></P>
+    <p class="loading-text">正在努力加载...</p>
+</div>
+<section>
+    <div style="width: 100%;">
+        <h1 class="text-center">预约:待确认列表</h1>
+        <div id="tabControl" type="1" class="relative check-h1" style="height: 30px;">
+            <span class="addQueBtn1 btn check-active" onclick="TabControl('1')">待确认</span>
+            <span id="addQueBtn2" class="addQueBtn2 btn active2" onclick="TabControl('2')">待提醒</span>
+        </div>
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>医生</th>
+                <th>会员</th>
+                <th>医院</th>
+                <th>诊室</th>
+                <th>事项</th>
+                <th>预约时间</th>
+                <th>提醒时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="table-body" class="tbody">
+            <tr>
+                <td class="null-td" colspan="8">暂无记录</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<div class="page-div">
+    <div class="page float-rt">
+        <table class="page-table" border="0" cellspacing="" cellpadding="">
+            <tr>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('index')">首页</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('pastpage')">上一页</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('nextpage')">下一页</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="javascript:pageChange('end')">末页</a>
+                </td>
+                <td>第<strong id="now"><!--1--></strong>页</td>
+                <td>总共<strong id="totle">0</strong>页<strong id="maincount">0</strong>条数据</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script src="../../js/draggabilly.pkgd.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var $draggable = $('.draggable').draggabilly({
+            handle: '.handle'
+        });
+        var H = $(window).height();
+        var _h = $('.tbody').offset().top;
+        $('.waitingLoadingList').css('top', _h + 'px');
+    });
+</script>
+</body>
+</html>
